@@ -12,7 +12,10 @@ let compiler = webpack(config);
 
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
-  publicPath: config.output.publicPath
+  hot: true,
+  publicPath: config.output.publicPath,
+  historyApiFallback: true,
+  stats: {colors: true}
 }));
 
 app.use(webpackHotMiddleware(compiler));
