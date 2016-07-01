@@ -5,5 +5,3 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import './static/scss/app.scss';
 
-console.log(a);
-console.log(b);
