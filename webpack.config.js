@@ -11,7 +11,7 @@ module.exports = {
     './src/app'
   ],
   output: {
-    publicPath: '/static/',  // html引用时静态资源时的资源路径，幽灵文件夹
+    publicPath: '/static/',  // html引用静态资源时的资源路径，幽灵文件夹
     path: path.join(__dirname, 'lib'),  // 打包输出的路径
     filename: 'app.js'  // 打包后的文件名
   },
@@ -34,7 +34,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': 'development'
+      'process.env.NODE_ENV': '"development"'  // 双引号必须加
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
