@@ -2,7 +2,7 @@
 
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import trailblazerReducer from '../reducers/index';
+import trailblazerReducer from '../reducer/index';
 
 const store = createStore(combineReducers(trailblazerReducer), applyMiddleware(thunk));
 

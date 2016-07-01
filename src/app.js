@@ -6,7 +6,7 @@ import ReactDom from 'react-dom';
 import {Provider} from 'react-redux';
 
 import store from './store/index';
-import {Header} from './components/common/index';
+import router from './router/index';
 
 import './static/scss/app.scss';
 
@@ -16,7 +16,7 @@ store.subscribe(function () {
 
 ReactDom.render(
   <Provider store={store}>
-    <Header />
+    {router}
   </Provider>,
   document.getElementById('root')
 );

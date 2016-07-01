@@ -1,6 +1,6 @@
 "use strict";
 
-import {CREATE, READ, UPDATE, DELETE} from '../constants/action_type';
+import {CREATE, READ, UPDATE, DELETE} from '../constant/action_type';
 
 const initialState = {
 

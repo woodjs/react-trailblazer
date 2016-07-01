@@ -1,6 +1,6 @@
 "use strict";
 
-import * as actionType from '../constants/action_type';
+import * as actionType from '../constant/action_type';
 
 export function create(data) {
   return {
