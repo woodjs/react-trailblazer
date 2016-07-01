@@ -12,9 +12,8 @@ let compiler = webpack(config);
 
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
-  hot: true,
+  quite: true,
   publicPath: config.output.publicPath,
-  historyApiFallback: true,
   stats: {colors: true}
 }));
 

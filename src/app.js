@@ -1,5 +1,9 @@
 "use strict";
 
-let a = 1;
-let b = 1;
-let c = 2;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import './static/scss/app.scss';
+
+console.log(a);
+console.log(b);

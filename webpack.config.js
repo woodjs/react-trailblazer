@@ -7,15 +7,13 @@ let ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
-    'webpack-dev-server/client?http://127.0.0.1:9999',
-    'webpack/hot/only-dev-server',
     'webpack-hot-middleware/client',
     './src/app'
   ],
   output: {
-    publicPath: 'http://127.0.0.1:9999/lib/',  // html引用时静态资源时的资源路径
+    publicPath: '/static/',  // html引用时静态资源时的资源路径，幽灵文件夹
     path: path.join(__dirname, 'lib'),  // 打包输出的路径
-    filename: '[name].js'  // 打包后的文件名
+    filename: 'app.js'  // 打包后的文件名
   },
   module: {
     loaders: [{
@@ -36,11 +34,11 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"development"'
+      'process.env.NODE_ENV': 'development'
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('[name].css')
+    new ExtractTextPlugin('app.css')
   ],
   resolve: {
     extensions: ['', '.js']  // 后缀名自动补全
