@@ -1,47 +1,51 @@
-@import "base";
-@import "reset";
+@import "./common/reset";
+@import "./common/base";
+@import "./common/config";
 
-$fontColor: #333;
-$lighterFontColor: #666;
-$lightestFontColor: #999;
-$bdColor: #ebebeb;
-$bgColor: #f7f7f7;
-$themeColor: #007acd #007acd;
+html{
+ -webkit-text-size-adjust:none;
+ text-size-adjust: none;
+ font-size:10px;
+}
+
+@media only screen and (min-width:768px) {
+ html{
+  font-size:20px !important;
+ }
+}
 
 body{
- font-size:14px;
- min-width:980px;
  font-family: 'Microsoft Yahei', Arial, STHeiti, sans-serif;
- background: #fff;
+ background: $bgColor;
  color:$fontColor;
+ font-size: 1rem;
+ @include boxSizing(border-box);
 }
 
 a{
  color:$fontColor;
- text-decoration: none;
 }
 
-.btn {
- cursor:pointer;
-}
-
-.icon{
+.btn{
  display: inline-block;
 }
 
 header{
  width: 100%;
- line-height:50px;
- background: green;
- position: fixed;
- left:0;
- top:0;
- z-index: 500;
- text-align: center;
- a{
-  color:#fff;
-  &:hover{
-   text-decoration: underline;
-  }
+ @include setHeightGroup(4.6rem);
+ background: $themeColor;
+ color:#fff;
+ font-size: 1.8rem;
+ .btn-back{
+  width:4.6rem;
+  float:left;
  }
+ .title{
+  width:100%;
+  padding: 0 4.6rem;
+  @include setHeightGroup(4.6rem);
+ }
+}
+.box-product-info{
+ padding:8px 10px;
 }

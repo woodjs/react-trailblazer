@@ -17,5 +17,4 @@ export default function trailblazerReducer(state = initialState, action) {
 
       return state;
   }
-
 }
