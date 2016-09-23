@@ -2,50 +2,207 @@
 @import "./common/base";
 @import "./common/config";
 
-html{
- -webkit-text-size-adjust:none;
+html {
+ -webkit-text-size-adjust: none;
  text-size-adjust: none;
- font-size:10px;
+ font-size: 10px;
 }
 
-@media only screen and (min-width:768px) {
- html{
-  font-size:20px !important;
+@media only screen and (min-width: 768px) {
+ html {
+  font-size: 20px !important;
  }
 }
 
-body{
+body {
  font-family: 'Microsoft Yahei', Arial, STHeiti, sans-serif;
  background: $bgColor;
- color:$fontColor;
+ color: $fontColor;
  font-size: 1rem;
  @include boxSizing(border-box);
 }
 
-a{
- color:$fontColor;
+a {
+ color: $fontColor;
+ text-decoration: none;
 }
 
-.btn{
+.btn {
  display: inline-block;
 }
 
-header{
+.icon{
+ display:inline-block;
+}
+.app-container{
+ height:100%;
+}
+.app-main{
+ height:100%;
+ padding-top:4.4rem;
+}
+header {
  width: 100%;
- @include setHeightGroup(4.6rem);
+ position: fixed;
+ top:0;
+ left:0;
+ z-index: 100;
+ @include setHeightGroup(4.4rem);
  background: $themeColor;
- color:#fff;
+ color: #fff;
  font-size: 1.8rem;
- .btn-back{
-  width:4.6rem;
-  float:left;
+ .btn-back {
+  width: 4.4rem;
+  float: left;
  }
- .title{
-  width:100%;
-  padding: 0 4.6rem;
-  @include setHeightGroup(4.6rem);
+ .title {
+  width: 100%;
+  padding: 0 4.4rem;
+  @include setHeightGroup(4.4rem);
+  @extend %textOverflowEllipsis;
+  &.title-no-btn{
+   padding: 0 1rem;
+  }
  }
 }
-.box-product-info{
- padding:8px 10px;
+
+.box-product-info {
+ padding: .8rem 1rem;
+ border-bottom: .1rem solid $lightestBdColor;
+ .product-title {
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  padding-top: .4em;
+ }
+ .product-price {
+  font-size: 1.5rem;
+  line-height: 2.2rem;
+  span {
+   font-size: 1.3rem;
+   color: $priceColor;
+   margin-right: .2rem;
+  }
+ }
+ .product-expire {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  padding: .3rem 0;
+  color: $lightestFontColor;
+ }
+ .product-discount-info {
+  padding-top: .4rem;
+  label{
+   float:left;
+   font-size: 1rem;
+   line-height: 1.6rem;
+   width:5rem;
+   padding:0 .5rem;
+   color:#fff;
+   background: $discountLabelColor;
+  }
+  ul{
+   padding-left:7rem;
+   padding-top:.2rem;
+   font-size: 1.2rem;
+   li{
+    line-height:1.6rem;
+    color:$lighterFontColor;
+   }
+   .discount-price{
+    margin-top:.8rem;
+    text-align: right;
+    color:$lightestFontColor;
+    span{
+     color:$priceColor;
+     margin-left:.2rem;
+     font-size:1rem;
+    }
+   }
+  }
+ }
+}
+.box-pay-list{
+ .pay-item{
+  border-bottom:.1rem solid $lightestBdColor;
+  position: relative;
+  div{
+   padding:2rem 13rem 2rem 5rem;
+   line-height: 2rem;
+   font-size:1.4rem;
+   width:100%;
+  }
+  i{
+   left: 0;
+   top:0;
+   position: absolute;
+   width:5rem;
+   height:100%;
+  }
+  span{
+   position: absolute;
+   right:0;
+   top:50%;
+   padding:0 1rem;
+   width: 13rem;
+   text-align: right;
+   font-size:1.2rem;
+   line-height: 1.8rem;
+   color:$priceColor;
+   @include transform(translate(0, -50%));
+   word-break: break-all;
+  }
+ }
+}
+.box-order-success{
+ .success-info{
+  padding:2.5rem 1rem;
+  font-size:1.8rem;
+  text-align: center;
+  span{
+   padding-left:3rem;
+   line-height: 2.6rem;
+  }
+ }
+ .order-number{
+  line-height: 3rem;
+  padding:0 1rem;
+  font-size:1.2rem;
+  border-bottom: .1rem solid $lightestBdColor;
+  span{
+   color:$lightestFontColor;
+  }
+ }
+ .expire-date{
+  line-height: 3rem;
+  padding:0 1rem;
+  font-size:1.2rem;
+  color:$lightestFontColor;
+ }
+}
+.action-info{
+ text-align: center;
+ font-size:1.4rem;
+ padding:0 1rem;
+ margin-top:1.5rem;
+ line-height: 2.2rem;
+}
+
+.box-success-btn{
+ padding: 0 10rem;
+ margin-top:2.4rem;
+ a{
+  display: block;
+  font-size:1.6rem;
+  border:.1rem solid $btnBlueBdColor;
+  background: $btnBlueBgColor;
+  height: 5rem;
+  line-height: 5rem;
+  text-align: center;
+  color:#fff;
+ }
+ .btn-get-invoice{
+  color: $fontColor;
+  border:.1rem solid $lightestBdColor;
+  background: #fff;
+ }
 }

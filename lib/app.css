@@ -1,3 +1,9 @@
+header .title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 body, div, ul, dl, ol, dt, dd, li, p, a, label, span, i, label, img, input, textarea, header, footer, article, section, nav, aside, figure {
   padding: 0;
   margin: 0;
@@ -12,6 +18,12 @@ ul, dl, ol {
 
 input, textarea, a {
   outline: none;
+}
+
+header .title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 html {
@@ -36,33 +48,191 @@ body {
 
 a {
   color: #000;
+  text-decoration: none;
 }
 
 .btn {
   display: inline-block;
 }
 
+.icon {
+  display: inline-block;
+}
+
+.app-container {
+  height: 100%;
+}
+
+.app-main {
+  height: 100%;
+  padding-top: 4.4rem;
+}
+
 header {
   width: 100%;
-  height: 4.6rem;
-  line-height: 4.6rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  height: 4.4rem;
+  line-height: 4.4rem;
   background: #017ACC;
   color: #fff;
   font-size: 1.8rem;
 }
 header .btn-back {
-  width: 4.6rem;
+  width: 4.4rem;
   float: left;
 }
 header .title {
   width: 100%;
-  padding: 0 4.6rem;
-  height: 4.6rem;
-  line-height: 4.6rem;
+  padding: 0 4.4rem;
+  height: 4.4rem;
+  line-height: 4.4rem;
+}
+header .title.title-no-btn {
+  padding: 0 1rem;
 }
 
 .box-product-info {
-  padding: 8px 10px;
+  padding: .8rem 1rem;
+  border-bottom: 0.1rem solid #f0f0f0;
+}
+.box-product-info .product-title {
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  padding-top: .4em;
+}
+.box-product-info .product-price {
+  font-size: 1.5rem;
+  line-height: 2.2rem;
+}
+.box-product-info .product-price span {
+  font-size: 1.3rem;
+  color: #f8243a;
+  margin-right: .2rem;
+}
+.box-product-info .product-expire {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  padding: .3rem 0;
+  color: #999;
+}
+.box-product-info .product-discount-info {
+  padding-top: .4rem;
+}
+.box-product-info .product-discount-info label {
+  float: left;
+  font-size: 1rem;
+  line-height: 1.6rem;
+  width: 5rem;
+  padding: 0 .5rem;
+  color: #fff;
+  background: #cd2329;
+}
+.box-product-info .product-discount-info ul {
+  padding-left: 7rem;
+  padding-top: .2rem;
+  font-size: 1.2rem;
+}
+.box-product-info .product-discount-info ul li {
+  line-height: 1.6rem;
+  color: #333;
+}
+.box-product-info .product-discount-info ul .discount-price {
+  margin-top: .8rem;
+  text-align: right;
+  color: #999;
+}
+.box-product-info .product-discount-info ul .discount-price span {
+  color: #f8243a;
+  margin-left: .2rem;
+  font-size: 1rem;
+}
+
+.box-pay-list .pay-item {
+  border-bottom: 0.1rem solid #f0f0f0;
+  position: relative;
+}
+.box-pay-list .pay-item div {
+  padding: 2rem 13rem 2rem 5rem;
+  line-height: 2rem;
+  font-size: 1.4rem;
+  width: 100%;
+}
+.box-pay-list .pay-item i {
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 5rem;
+  height: 100%;
+}
+.box-pay-list .pay-item span {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  padding: 0 1rem;
+  width: 13rem;
+  text-align: right;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  color: #f8243a;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  word-break: break-all;
+}
+
+.box-order-success .success-info {
+  padding: 2.5rem 1rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+.box-order-success .success-info span {
+  padding-left: 3rem;
+  line-height: 2.6rem;
+}
+.box-order-success .order-number {
+  line-height: 3rem;
+  padding: 0 1rem;
+  font-size: 1.2rem;
+  border-bottom: 0.1rem solid #f0f0f0;
+}
+.box-order-success .order-number span {
+  color: #999;
+}
+.box-order-success .expire-date {
+  line-height: 3rem;
+  padding: 0 1rem;
+  font-size: 1.2rem;
+  color: #999;
+}
+
+.action-info {
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 0 1rem;
+  margin-top: 1.5rem;
+  line-height: 2.2rem;
+}
+
+.box-success-btn {
+  padding: 0 10rem;
+  margin-top: 2.4rem;
+}
+.box-success-btn a {
+  display: block;
+  font-size: 1.6rem;
+  border: 0.1rem solid #1EA3E3;
+  background: #1EA3E3;
+  height: 5rem;
+  line-height: 5rem;
+  text-align: center;
+  color: #fff;
+}
+.box-success-btn .btn-get-invoice {
+  color: #000;
+  border: 0.1rem solid #f0f0f0;
+  background: #fff;
 }
 
 /*# sourceMappingURL=app.css.map */
