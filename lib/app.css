@@ -95,28 +95,26 @@ header .title.title-no-btn {
 }
 
 .box-product-info {
-  padding: .8rem 1rem;
+  padding: 1rem 1.5rem;
   border-bottom: 0.1rem solid #f0f0f0;
 }
 .box-product-info .product-title {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   line-height: 2.2rem;
-  padding-top: .4em;
 }
 .box-product-info .product-price {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 2.2rem;
 }
 .box-product-info .product-price span {
-  font-size: 1.3rem;
-  color: #f8243a;
+  font-size: 1.4rem;
   margin-right: .2rem;
 }
 .box-product-info .product-expire {
   font-size: 1.2rem;
   line-height: 1.6rem;
   padding: .3rem 0;
-  color: #999;
+  color: #888;
 }
 .box-product-info .product-discount-info {
   padding-top: .4rem;
@@ -124,30 +122,45 @@ header .title.title-no-btn {
 .box-product-info .product-discount-info label {
   float: left;
   font-size: 1rem;
+  height: 1.6rem;
   line-height: 1.6rem;
   width: 5rem;
   padding: 0 .5rem;
   color: #fff;
   background: #cd2329;
 }
-.box-product-info .product-discount-info ul {
+.box-product-info .product-discount-info p {
   padding-left: 7rem;
-  padding-top: .2rem;
   font-size: 1.2rem;
-}
-.box-product-info .product-discount-info ul li {
   line-height: 1.6rem;
   color: #333;
 }
-.box-product-info .product-discount-info ul .discount-price {
-  margin-top: .8rem;
-  text-align: right;
-  color: #999;
+.box-product-info .product-buy {
+  padding: .2rem 11rem 0 0;
+  position: relative;
+  min-height: 4.4rem;
 }
-.box-product-info .product-discount-info ul .discount-price span {
+.box-product-info .product-buy .price-info-item {
+  line-height: 2.2rem;
+  font-size: 1.2rem;
+  color: #888;
+}
+.box-product-info .product-buy .price-info-item span {
+  padding-left: 2rem;
   color: #f8243a;
-  margin-left: .2rem;
-  font-size: 1rem;
+}
+.box-product-info .product-buy a {
+  display: block;
+  width: 10rem;
+  height: 4rem;
+  line-height: 3.8rem;
+  font-size: 1.4rem;
+  color: #f8243a;
+  border: 0.1rem solid #f8243a;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  top: .2rem;
 }
 
 .box-pay-list .pay-item {
@@ -198,13 +211,13 @@ header .title.title-no-btn {
   border-bottom: 0.1rem solid #f0f0f0;
 }
 .box-order-success .order-number span {
-  color: #999;
+  color: #888;
 }
 .box-order-success .expire-date {
   line-height: 3rem;
   padding: 0 1rem;
   font-size: 1.2rem;
-  color: #999;
+  color: #888;
 }
 
 .action-info {
