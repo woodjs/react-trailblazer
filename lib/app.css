@@ -32,9 +32,21 @@ html {
   font-size: 10px;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 750px) {
   html {
     font-size: 20px !important;
+  }
+  html header .btn-back {
+    background: url(./images/back_2x.png) center center no-repeat;
+  }
+  html .box-pay-list .pay-item.pay-wx i {
+    background: url(./images/wx_2x.png) 1.5rem center no-repeat;
+  }
+  html .box-pay-list .pay-item.pay-zfb i {
+    background: url(./images/zfb_2x.png) 1.5rem center no-repeat;
+  }
+  html .box-invoice-type .item-invoice-type {
+    background: url(./images/arrow_2x.png) right 1.5rem center no-repeat;
   }
 }
 body {
@@ -82,16 +94,30 @@ header {
 }
 header .btn-back {
   width: 4.4rem;
+  height: 4.4rem;
   float: left;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  background: url(./images/back_1x.png) center center no-repeat;
 }
 header .title {
   width: 100%;
   padding: 0 4.4rem;
   height: 4.4rem;
   line-height: 4.4rem;
+  text-align: center;
 }
-header .title.title-no-btn {
-  padding: 0 1rem;
+
+.box-order-number {
+  line-height: 3.4rem;
+  padding: 0 1.5rem;
+  font-size: 1.2rem;
+  border-bottom: 0.1rem solid #f0f0f0;
+}
+.box-order-number span {
+  color: #888;
 }
 
 .box-product-info {
@@ -127,7 +153,9 @@ header .title.title-no-btn {
   width: 5rem;
   padding: 0 .5rem;
   color: #fff;
-  background: #cd2329;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e92f3c), color-stop(100%, #ce1920));
+  background: -webkit-linear-gradient(top, #e92f3c 0%, #ce1920 100%);
+  background: linear-gradient(to bottom, #e92f3c 0%, #ce1920 100%);
 }
 .box-product-info .product-discount-info p {
   padding-left: 7rem;
@@ -138,7 +166,9 @@ header .title.title-no-btn {
 .box-product-info .product-buy {
   padding: .2rem 11rem 0 0;
   position: relative;
-  min-height: 4.4rem;
+}
+.box-product-info .product-buy.with-btn-buy {
+  min-height: 4.6rem;
 }
 .box-product-info .product-buy .price-info-item {
   line-height: 2.2rem;
@@ -148,6 +178,10 @@ header .title.title-no-btn {
 .box-product-info .product-buy .price-info-item span {
   padding-left: 2rem;
   color: #f8243a;
+  font-size: 1.1rem;
+}
+.box-product-info .product-buy .price-info-item .real-price {
+  font-size: 1.3rem;
 }
 .box-product-info .product-buy a {
   display: block;
@@ -166,9 +200,16 @@ header .title.title-no-btn {
 .box-pay-list .pay-item {
   border-bottom: 0.1rem solid #f0f0f0;
   position: relative;
+  display: block;
+}
+.box-pay-list .pay-item.pay-wx i {
+  background: url(./images/wx_1x.png) 1.5rem center no-repeat;
+}
+.box-pay-list .pay-item.pay-zfb i {
+  background: url(./images/zfb_1x.png) 1.5rem center no-repeat;
 }
 .box-pay-list .pay-item div {
-  padding: 2rem 13rem 2rem 5rem;
+  padding: 2rem 14rem 2rem 5.5rem;
   line-height: 2rem;
   font-size: 1.4rem;
   width: 100%;
@@ -177,17 +218,17 @@ header .title.title-no-btn {
   left: 0;
   top: 0;
   position: absolute;
-  width: 5rem;
+  width: 5.5rem;
   height: 100%;
 }
 .box-pay-list .pay-item span {
   position: absolute;
   right: 0;
   top: 50%;
-  padding: 0 1rem;
-  width: 13rem;
+  padding: 0 1.5rem;
+  width: 14rem;
   text-align: right;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 1.8rem;
   color: #f8243a;
   -webkit-transform: translate(0, -50%);
@@ -196,17 +237,18 @@ header .title.title-no-btn {
 }
 
 .box-order-success .success-info {
-  padding: 2.5rem 1rem;
+  padding: 2.5rem 1.5rem;
   font-size: 1.8rem;
   text-align: center;
 }
 .box-order-success .success-info span {
   padding-left: 3rem;
   line-height: 2.6rem;
+  background: url(./images/success_1x.png) left center no-repeat;
 }
 .box-order-success .order-number {
   line-height: 3rem;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   font-size: 1.2rem;
   border-bottom: 0.1rem solid #f0f0f0;
 }
@@ -215,22 +257,15 @@ header .title.title-no-btn {
 }
 .box-order-success .expire-date {
   line-height: 3rem;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   font-size: 1.2rem;
   color: #888;
-}
-
-.action-info {
-  text-align: center;
-  font-size: 1.4rem;
-  padding: 0 1rem;
-  margin-top: 1.5rem;
-  line-height: 2.2rem;
+  margin-bottom: 1.5rem;
 }
 
 .box-success-btn {
-  padding: 0 10rem;
-  margin-top: 2.4rem;
+  padding: 0 10.5rem;
+  margin-bottom: 2.5rem;
 }
 .box-success-btn a {
   display: block;
@@ -246,6 +281,22 @@ header .title.title-no-btn {
   color: #000;
   border: 0.1rem solid #f0f0f0;
   background: #fff;
+}
+
+.box-invoice-type .item-invoice-type {
+  display: block;
+  line-height: 2.0rem;
+  font-size: 1.4rem;
+  border-bottom: 0.1rem solid #f0f0f0;
+  padding: 1.7rem 4.5rem 1.7rem 1.5rem;
+  background: url(./images/arrow_1x.png) right 1.5rem center no-repeat;
+}
+.box-invoice-type .item-invoice-type span {
+  font-size: 1.2rem;
+  color: #888;
+  position: relative;
+  top: -.1rem;
+  margin-left: .8rem;
 }
 
 /*# sourceMappingURL=app.css.map */

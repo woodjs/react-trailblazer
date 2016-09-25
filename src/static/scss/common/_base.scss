@@ -46,6 +46,12 @@
  }
 }
 
+@mixin linearGradient($beginColor: #f9f9f9, $endColor: #eaeaea) {
+ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$beginColor), color-stop(100%,$endColor));  // Chrome,Safari4+
+ background: -webkit-linear-gradient(top,  $beginColor 0%,$endColor 100%);  // Chrome10+,Safari5.1+
+ background: linear-gradient(to bottom,  $beginColor 0%,$endColor 100%);  // W3C
+}
+
 $prefixList: '-webkit-' '';
 @mixin createAnimation($name, $duration: 1s, $func: ease-in-out, $delay: 0, $count: infinite, $direction: normal, $state: running, $mode: none) { // ie10+
  @each $prefix in $prefixList {

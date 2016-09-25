@@ -3,16 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
-  <title>购买商品</title>
+  <title>选择支付方式</title>
   <link type="text/css" rel="stylesheet" href="../../../lib/app.css">
 </head>
 <body>
   <section class="app-container">
     <header>
       <a href="" class="btn btn-back"></a>
-      <div class="title">购买商品</div>
+      <div class="title">选择支付方式</div>
     </header>
     <section  class="app-main">
+      <section class="box-order-number">
+        <span>订单号：</span> 00000000010000000000000
+      </section>
       <section class="box-product-info">
         <div class="product-title">正版SGMW-EPC移动版（最齐全、最准确、最及时  ）</div>
         <div class="product-price"><span>￥600.00</span>/年</div>
@@ -23,21 +26,19 @@
         </div>
         <div class="product-buy">
           <div class="price-info-item">优惠：<span>-￥600.00</span></div>
-          <div class="price-info-item">实付款：<span>￥600.00</span></div>
-          <a href="#">购买</a>
         </div>
       </section>
       <section class="box-pay-list">
-        <div class="pay-item pay-wx">
+        <a class="pay-item pay-wx">
           <i class="icon"></i>
           <span>￥600.00</span>
           <div>微信支付</div>
-        </div>
-        <div class="pay-item pay-zfb">
+        </a>
+        <a class="pay-item pay-zfb">
           <i class="icon"></i>
           <span>￥600.00</span>
           <div>支付宝支付</div>
-        </div>
+        </a>
       </section>
     </section>
   </section>
