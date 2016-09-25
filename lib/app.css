@@ -48,6 +48,42 @@ html {
   html .box-invoice-type .item-invoice-type {
     background: url(./images/arrow_2x.png) right 1.5rem center no-repeat;
   }
+  html .box-invoice-input .split-line {
+    background: url(./images/line_2x.png) left center repeat-x;
+  }
+  html .box-invoice-input .invoice-input .select-address {
+    background: url(./images/arrow_2x.png) right 1.5rem center no-repeat;
+  }
+  html .box-invoice-input .company {
+    background: url(./images/company_2x.png) 1.5rem center no-repeat;
+  }
+  html .box-invoice-input .user {
+    background: url(./images/user_2x.png) 1.5rem center no-repeat;
+  }
+  html .box-invoice-input .mobile {
+    background: url(./images/mobile_2x.png) 1.5rem center no-repeat;
+  }
+  html .box-invoice-input .address {
+    background: url(./images/address_2x.png) 1.5rem center no-repeat;
+  }
+  html .box-invoice-input .number {
+    background: url(./images/number_2x.png) 1.5rem center no-repeat;
+  }
+  html .box-invoice-input .phone {
+    background: url(./images/phone_2x.png) 1.5rem center no-repeat;
+  }
+  html .box-invoice-input .bank {
+    background: url(./images/bank_2x.png) 1.5rem center no-repeat;
+  }
+  html .box-invoice-input .account {
+    background: url(./images/account_2x.png) 1.5rem center no-repeat;
+  }
+  html .box-address .cur-address {
+    background: url(./images/gps_2x.png) 1.5rem center no-repeat;
+  }
+  html .box-address-items .address-item {
+    background: url(./images/arrow_2x.png) right 1.5rem center no-repeat;
+  }
 }
 body {
   font-family: 'Microsoft Yahei', Arial, STHeiti, sans-serif;
@@ -297,6 +333,99 @@ header .title {
   position: relative;
   top: -.1rem;
   margin-left: .8rem;
+}
+
+.box-invoice-input .invoice-input {
+  line-height: 5.4rem;
+  border: 0.1rem solid #f0f0f0;
+}
+.box-invoice-input .invoice-input input {
+  display: block;
+  width: 100%;
+  padding: 0 3rem 0 5rem;
+  height: 5.4rem;
+  line-height: 5.4rem;
+  font-size: 1.4rem;
+}
+.box-invoice-input .invoice-input input::-webkit-input-placeholder {
+  color: #888;
+  font-size: 1.4rem;
+}
+.box-invoice-input .invoice-input .select-address {
+  display: block;
+  width: 100%;
+  padding: 1.6rem 3rem 1.6rem 5rem;
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+  color: #888;
+  background: url(./images/arrow_1x.png) right 1.5rem center no-repeat;
+}
+.box-invoice-input .split-line {
+  height: .5rem;
+  background: url(./images/line_1x.png) left center repeat-x;
+}
+.box-invoice-input .company {
+  background: url(./images/company_1x.png) 1.5rem center no-repeat;
+}
+.box-invoice-input .user {
+  background: url(./images/user_1x.png) 1.5rem center no-repeat;
+}
+.box-invoice-input .mobile {
+  background: url(./images/mobile_1x.png) 1.5rem center no-repeat;
+}
+.box-invoice-input .address {
+  background: url(./images/address_1x.png) 1.5rem center no-repeat;
+}
+.box-invoice-input .number {
+  background: url(./images/number_1x.png) 1.5rem center no-repeat;
+}
+.box-invoice-input .phone {
+  background: url(./images/phone_1x.png) 1.5rem center no-repeat;
+}
+.box-invoice-input .bank {
+  background: url(./images/bank_1x.png) 1.5rem center no-repeat;
+}
+.box-invoice-input .account {
+  background: url(./images/account_1x.png) 1.5rem center no-repeat;
+}
+
+.wrapper-btn-submit {
+  margin: 1.5rem 0;
+  padding: 0 1.5rem;
+  height: 5rem;
+}
+.wrapper-btn-submit .btn-submit {
+  display: block;
+  font-size: 1.6rem;
+  border: 0.1rem solid #1EA3E3;
+  background: #1EA3E3;
+  height: 5rem;
+  line-height: 5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.box-address {
+  border-bottom: 0.1rem solid #eee;
+}
+.box-address .cur-address {
+  padding: 1.6rem 3rem 1.6rem 3.8rem;
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+  color: #888;
+  background: url(./images/gps_1x.png) 1.5rem center no-repeat;
+}
+
+.box-address-items .address-item {
+  border: 0.1rem solid #f0f0f0;
+  padding: 1.6rem 3rem 1.6rem 1.5rem;
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+  color: #000;
+  background: url(./images/arrow_1x.png) right 1.5rem center no-repeat;
+}
+.box-address-items .address-item.no-next-grade {
+  background: none;
 }
 
 /*# sourceMappingURL=app.css.map */

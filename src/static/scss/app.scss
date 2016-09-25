@@ -35,6 +35,50 @@ html {
     background: url(./images/arrow_2x.png) right 1.5rem center no-repeat;
    }
   }
+  .box-invoice-input{
+   .split-line{
+    background: url(./images/line_2x.png) left center repeat-x;
+   }
+   .invoice-input{
+    .select-address{
+     background: url(./images/arrow_2x.png) right 1.5rem center no-repeat;
+    }
+   }
+   .company{
+    background: url(./images/company_2x.png) 1.5rem center no-repeat;
+   }
+   .user{
+    background: url(./images/user_2x.png) 1.5rem center no-repeat;
+   }
+   .mobile{
+    background: url(./images/mobile_2x.png) 1.5rem center no-repeat;
+   }
+   .address{
+    background: url(./images/address_2x.png) 1.5rem center no-repeat;
+   }
+   .number{
+    background: url(./images/number_2x.png) 1.5rem center no-repeat;
+   }
+   .phone{
+    background: url(./images/phone_2x.png) 1.5rem center no-repeat;
+   }
+   .bank{
+    background: url(./images/bank_2x.png) 1.5rem center no-repeat;
+   }
+   .account{
+    background: url(./images/account_2x.png) 1.5rem center no-repeat;
+   }
+  }
+  .box-address{
+   .cur-address{
+    background: url(./images/gps_2x.png) 1.5rem center no-repeat;
+   }
+  }
+  .box-address-items{
+   .address-item{
+    background: url(./images/arrow_2x.png) right 1.5rem center no-repeat;
+   }
+  }
  }
 }
 
@@ -280,6 +324,98 @@ header {
    position: relative;
    top:-.1rem;
    margin-left:.8rem;
+  }
+ }
+}
+.box-invoice-input{
+ .invoice-input{
+  line-height: 5.4rem;
+  border:.1rem solid $lightestBdColor;
+  input{
+   display: block;
+   width:100%;
+   padding:0 3rem 0 5rem;
+   height:5.4rem;
+   line-height: 5.4rem;
+   font-size:1.4rem;
+  }
+  @include inputPlaceholderColor($lightestFontColor, 1.4rem);
+  .select-address{
+   display: block;
+   width:100%;
+   padding:1.6rem 3rem 1.6rem 5rem;
+   font-size:1.4rem;
+   line-height: 2.2rem;
+   color:$lightestFontColor;
+   background: url(./images/arrow_1x.png) right 1.5rem center no-repeat;
+  }
+ }
+ .split-line{
+  height:.5rem;
+  background: url(./images/line_1x.png) left center repeat-x;
+ }
+ .company{
+  background: url(./images/company_1x.png) 1.5rem center no-repeat;
+ }
+ .user{
+  background: url(./images/user_1x.png) 1.5rem center no-repeat;
+ }
+ .mobile{
+  background: url(./images/mobile_1x.png) 1.5rem center no-repeat;
+ }
+ .address{
+  background: url(./images/address_1x.png) 1.5rem center no-repeat;
+ }
+ .number{
+  background: url(./images/number_1x.png) 1.5rem center no-repeat;
+ }
+ .phone{
+  background: url(./images/phone_1x.png) 1.5rem center no-repeat;
+ }
+ .bank{
+  background: url(./images/bank_1x.png) 1.5rem center no-repeat;
+ }
+ .account{
+  background: url(./images/account_1x.png) 1.5rem center no-repeat;
+ }
+}
+.wrapper-btn-submit{
+ margin:1.5rem 0;
+ padding:0 1.5rem;
+ height:5rem;
+ .btn-submit{
+  display: block;
+  font-size:1.6rem;
+  border:.1rem solid $btnBlueBdColor;
+  background: $btnBlueBgColor;
+  height: 5rem;
+  line-height: 5rem;
+  text-align: center;
+  color:#fff;
+ }
+}
+
+.box-address{
+ border-bottom:.1rem solid $lighterBdColor;
+ .cur-address{
+  padding:1.6rem 3rem 1.6rem 3.8rem;
+  font-size:1.4rem;
+  line-height: 2.2rem;
+  color:$lightestFontColor;
+  background: url(./images/gps_1x.png) 1.5rem center no-repeat;
+ }
+}
+
+.box-address-items{
+ .address-item{
+  border:.1rem solid $lightestBdColor;
+  padding:1.6rem 3rem 1.6rem 1.5rem;
+  font-size:1.4rem;
+  line-height: 2.2rem;
+  color:$fontColor;
+  background: url(./images/arrow_1x.png) right 1.5rem center no-repeat;
+  &.no-next-grade{
+   background: none;
   }
  }
 }
