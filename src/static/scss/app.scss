@@ -14,9 +14,17 @@ html {
   .loading{
    background: url(./images/loading_2x.gif) center center no-repeat;
   }
+
   header {
    .btn-back {
     background: url(./images/back_2x.png) center center no-repeat;
+   }
+  }
+  .box-order-success{
+   .success-info{
+    span{
+     background: url(./images/success_2x.png) left center no-repeat;
+    }
    }
   }
   .box-pay-list{
@@ -93,6 +101,9 @@ body {
  @include boxSizing(border-box);
 }
 
+a,input,textarea,.btn{
+ -webkit-tap-highlight-color: rgba(1,122,204,0.5);
+}
 a {
  color: $fontColor;
  text-decoration: none;
@@ -333,13 +344,13 @@ header {
 .box-invoice-input{
  .invoice-input{
   line-height: 5.4rem;
-  border:.1rem solid $lightestBdColor;
+  border-bottom:.1rem solid $lightestBdColor;
   input{
    display: block;
    width:100%;
-   padding:0 3rem 0 5rem;
+   padding:1.5rem 3rem 1.5rem 5rem;
    height:5.4rem;
-   line-height: 5.4rem;
+   line-height: 2.4rem;
    font-size:1.4rem;
   }
   @include inputPlaceholderColor($lightestFontColor, 1.4rem);
@@ -411,7 +422,7 @@ header {
 
 .box-address-items{
  .address-item{
-  border:.1rem solid $lightestBdColor;
+  border-bottom:.1rem solid $lightestBdColor;
   padding:1.6rem 3rem 1.6rem 1.5rem;
   font-size:1.4rem;
   line-height: 2.2rem;
@@ -424,7 +435,7 @@ header {
 }
 
 .loading{
- margin-top: 5rem;
+ margin-top: 10rem;
  height:9rem;
  background: url(./images/loading_1x.gif) center center no-repeat;
 }
