@@ -40,8 +40,8 @@ html {
   html {
     font-size: 20px !important;
   }
-  html .loading {
-    background: url(./images/loading_2x.gif) center center no-repeat;
+  html .loading span {
+    background: url(./images/loading_2x.gif) left center no-repeat;
   }
   html header .btn-back {
     background: url(./images/back_2x.png) center center no-repeat;
@@ -55,14 +55,14 @@ html {
   html .box-pay-list .pay-item.pay-zfb i {
     background: url(./images/zfb_2x.png) 1.5rem center no-repeat;
   }
-  html .box-invoice-type .item-invoice-type {
-    background: url(./images/arrow_2x.png) right 1.5rem center no-repeat;
+  html .box-invoice-type .item-invoice-type::after {
+    background: url(./images/arrow_2x.png) 0.4rem center no-repeat;
   }
   html .box-invoice-input .split-line {
     background: url(./images/line_2x.png) left center repeat-x;
   }
-  html .box-invoice-input .invoice-input .select-address {
-    background: url(./images/arrow_2x.png) right 1.5rem center no-repeat;
+  html .box-invoice-input .invoice-input .select-address::after {
+    background: url(./images/arrow_2x.png) 0.4rem center no-repeat;
   }
   html .box-invoice-input .company {
     background: url(./images/company_2x.png) 1.5rem center no-repeat;
@@ -91,8 +91,8 @@ html {
   html .box-address .cur-address {
     background: url(./images/gps_2x.png) 1.5rem center no-repeat;
   }
-  html .box-address-items .address-item {
-    background: url(./images/arrow_2x.png) right 1.5rem center no-repeat;
+  html .box-address-items .address-item::after {
+    background: url(./images/arrow_2x.png) 0.4rem center no-repeat;
   }
 }
 body {
@@ -339,7 +339,16 @@ header .title {
   font-size: 1.4rem;
   border-bottom: 0.1rem solid #f0f0f0;
   padding: 1.7rem 4.5rem 1.7rem 1.5rem;
-  background: url(./images/arrow_1x.png) right 1.5rem center no-repeat;
+  position: relative;
+}
+.box-invoice-type .item-invoice-type::after {
+  content: '';
+  position: absolute;
+  width: 1.5rem;
+  right: 1.5rem;
+  top: 0;
+  height: 100%;
+  background: url(./images/arrow_1x.png) 0.4rem center no-repeat;
 }
 .box-invoice-type .item-invoice-type span {
   font-size: 1.2rem;
@@ -372,7 +381,16 @@ header .title {
   font-size: 1.4rem;
   line-height: 2.2rem;
   color: #888;
-  background: url(./images/arrow_1x.png) right 1.5rem center no-repeat;
+  position: relative;
+}
+.box-invoice-input .invoice-input .select-address::after {
+  content: '';
+  position: absolute;
+  width: 1.5rem;
+  right: 1.5rem;
+  top: 0;
+  height: 100%;
+  background: url(./images/arrow_1x.png) 0.4rem center no-repeat;
 }
 .box-invoice-input .split-line {
   height: .5rem;
@@ -436,16 +454,46 @@ header .title {
   font-size: 1.4rem;
   line-height: 2.2rem;
   color: #000;
-  background: url(./images/arrow_1x.png) right 1.5rem center no-repeat;
+  position: relative;
+}
+.box-address-items .address-item::after {
+  content: '';
+  position: absolute;
+  width: 1.5rem;
+  right: 1.5rem;
+  top: 0;
+  height: 100%;
+  background: url(./images/arrow_1x.png) 0.4rem center no-repeat;
 }
 .box-address-items .address-item.no-next-grade {
   background: none;
 }
 
 .loading {
-  margin-top: 10rem;
-  height: 9rem;
-  background: url(./images/loading_1x.gif) center center no-repeat;
+  margin-top: 15rem;
+  text-align: center;
+}
+.loading span {
+  padding: 3rem 6rem;
+  font-size: 1.2rem;
+  background: url(./images/loading_1x.gif) left center no-repeat;
+  background-size: 5rem 5rem;
+}
+
+.prompt {
+  line-height: 2rem;
+  font-size: 1.2rem;
+  padding: .5rem 3rem;
+  color: #fff;
+  text-align: center;
+  max-width: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  left: 50%;
+  bottom: 5rem;
+  z-index: 105;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 
 /*# sourceMappingURL=app.css.map */

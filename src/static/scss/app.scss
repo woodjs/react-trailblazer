@@ -12,7 +12,9 @@ html {
  html {
   font-size: 20px !important;
   .loading{
-   background: url(./images/loading_2x.gif) center center no-repeat;
+   span{
+    background: url(./images/loading_2x.gif) left center no-repeat;
+   }
   }
 
   header {
@@ -43,7 +45,9 @@ html {
   }
   .box-invoice-type{
    .item-invoice-type{
-    background: url(./images/arrow_2x.png) right 1.5rem center no-repeat;
+    &::after{
+     background: url(./images/arrow_2x.png) .4rem center no-repeat;
+    }
    }
   }
   .box-invoice-input{
@@ -52,7 +56,9 @@ html {
    }
    .invoice-input{
     .select-address{
-     background: url(./images/arrow_2x.png) right 1.5rem center no-repeat;
+     &::after{
+      background: url(./images/arrow_2x.png) .4rem center no-repeat;
+     }
     }
    }
    .company{
@@ -87,7 +93,9 @@ html {
   }
   .box-address-items{
    .address-item{
-    background: url(./images/arrow_2x.png) right 1.5rem center no-repeat;
+    &::after{
+     background: url(./images/arrow_2x.png) .4rem center no-repeat;
+    }
    }
   }
  }
@@ -331,7 +339,16 @@ header {
   font-size:1.4rem;
   border-bottom: .1rem solid $lightestBdColor;
   padding:1.7rem 4.5rem 1.7rem 1.5rem;
-  background: url(./images/arrow_1x.png) right 1.5rem center no-repeat;
+  position: relative;
+  &::after{
+   content: '';
+   position: absolute;
+   width:1.5rem;
+   right:1.5rem;
+   top:0;
+   height: 100%;
+   background: url(./images/arrow_1x.png) .4rem center no-repeat;
+  }
   span{
    font-size:1.2rem;
    color:$lightestFontColor;
@@ -361,7 +378,16 @@ header {
    font-size:1.4rem;
    line-height: 2.2rem;
    color:$lightestFontColor;
-   background: url(./images/arrow_1x.png) right 1.5rem center no-repeat;
+   position: relative;
+   &::after{
+    content: '';
+    position: absolute;
+    width:1.5rem;
+    right:1.5rem;
+    top:0;
+    height: 100%;
+    background: url(./images/arrow_1x.png) .4rem center no-repeat;
+   }
   }
  }
  .split-line{
@@ -427,7 +453,16 @@ header {
   font-size:1.4rem;
   line-height: 2.2rem;
   color:$fontColor;
-  background: url(./images/arrow_1x.png) right 1.5rem center no-repeat;
+  position: relative;
+  &::after{
+   content: '';
+   position: absolute;
+   width:1.5rem;
+   right:1.5rem;
+   top:0;
+   height: 100%;
+   background: url(./images/arrow_1x.png) .4rem center no-repeat;
+  }
   &.no-next-grade{
    background: none;
   }
@@ -435,7 +470,27 @@ header {
 }
 
 .loading{
- margin-top: 10rem;
- height:9rem;
- background: url(./images/loading_1x.gif) center center no-repeat;
+ margin-top: 15rem;
+ text-align: center;
+ span{
+  padding:3rem 6rem;
+  font-size:1.2rem;
+  background: url(./images/loading_1x.gif) left center no-repeat;
+  background-size:5rem 5rem;
+ }
+}
+
+.prompt{
+ line-height: 2rem;
+ font-size:1.2rem;
+ padding:.5rem 3rem;
+ color:#fff;
+ text-align: center;
+ max-width: 50%;
+ background: rgba(0,0,0,.6);
+ position:fixed;
+ left:50%;
+ bottom:5rem;
+ z-index:105;
+ @include transform(translate(-50%, 0));
 }

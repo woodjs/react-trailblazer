@@ -59,9 +59,11 @@ $(function () {
       util.loadData('/', '', function () {
         alert(1);
       }, function () {
-        $('#product-list').html(
-          ejs.render(self.tpl.product, data)
-        );
+        setTimeout(function () {
+          $('#product-list').html(
+            ejs.render(self.tpl.product, data)
+          );
+        }, 1000);
       });
     }
   };
