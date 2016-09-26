@@ -36,6 +36,9 @@ html {
   html {
     font-size: 20px !important;
   }
+  html .loading {
+    background: url(./images/loading_2x.gif) center center no-repeat;
+  }
   html header .btn-back {
     background: url(./images/back_2x.png) center center no-repeat;
   }
@@ -426,6 +429,12 @@ header .title {
 }
 .box-address-items .address-item.no-next-grade {
   background: none;
+}
+
+.loading {
+  margin-top: 5rem;
+  height: 9rem;
+  background: url(./images/loading_1x.gif) center center no-repeat;
 }
 
 /*# sourceMappingURL=app.css.map */

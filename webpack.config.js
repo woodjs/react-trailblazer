@@ -13,7 +13,7 @@ module.exports = {
   output: {
     publicPath: '/static/',  // html引用静态资源时的资源路径，幽灵文件夹
     path: path.join(__dirname, 'lib'),  // 打包输出的路径
-    filename: 'app.js'  // 打包后的文件名
+    filename: 'bundle.js'  // 打包后的文件名
   },
   module: {
     loaders: [{

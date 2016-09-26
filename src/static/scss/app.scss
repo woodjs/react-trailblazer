@@ -11,6 +11,9 @@ html {
 @media only screen and (min-width: 750px) {
  html {
   font-size: 20px !important;
+  .loading{
+   background: url(./images/loading_2x.gif) center center no-repeat;
+  }
   header {
    .btn-back {
     background: url(./images/back_2x.png) center center no-repeat;
@@ -418,4 +421,10 @@ header {
    background: none;
   }
  }
+}
+
+.loading{
+ margin-top: 5rem;
+ height:9rem;
+ background: url(./images/loading_1x.gif) center center no-repeat;
 }
