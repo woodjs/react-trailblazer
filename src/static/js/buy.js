@@ -8,6 +8,8 @@ $(function () {
       self.initEvent();
       self.initTemplate();
       self.render();
+
+      $('.app,.app-container,html,body').width(document.documentElement.clientWidth + 'px');
     },
 
     initElement: function () {
@@ -17,6 +19,8 @@ $(function () {
 
       self.jq.$pageBuy = $('#page-buy');
       self.jq.$pagePay = $('#page-pay');
+      self.jq.$pageBuyHeader = $('#page-buy-header');
+      self.jq.$pagePayHeader = $('#page-pay-header');
       self.jq.$toReferer = $('#to-referer');
       self.jq.$toPageBuy = $('#to-page-buy');
       self.jq.$productList = $('#product-list');
@@ -87,15 +91,24 @@ $(function () {
     showPageBuy: function () {
       var self = this;
 
-      self.jq.$pageBuy.show();
-      self.jq.$pagePay.hide();
+      self.jq.$pagePayHeader.css({
+        left: '100%'
+      });
+      self.jq.$pagePay.css({
+        left: '100%'
+      });
     },
 
     showPagePay: function () {
       var self = this;
 
-      self.jq.$pageBuy.hide();
-      self.jq.$pagePay.show();
+      self.jq.$pagePayHeader.css({
+        left: '0'
+      });
+      self.jq.$pagePay.css({
+        left: '0'
+      });
+
       self.renderPagePay();
     },
 
