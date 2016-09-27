@@ -42,6 +42,7 @@ html {
   }
   html .loading span {
     background: url(./images/loading_2x.gif) left center no-repeat;
+    background-size: 5rem 5rem;
   }
   html header .btn-back {
     background: url(./images/back_2x.png) center center no-repeat;
@@ -128,6 +129,9 @@ a {
 .app-main {
   height: 100%;
   padding-top: 4.4rem;
+}
+.app-main.app-main-address {
+  padding-top: 9.9rem;
 }
 
 header {
@@ -383,6 +387,9 @@ header .title {
   color: #888;
   position: relative;
 }
+.box-invoice-input .invoice-input .select-address span {
+  color: #000;
+}
 .box-invoice-input .invoice-input .select-address::after {
   content: '';
   position: absolute;
@@ -438,12 +445,19 @@ header .title {
 }
 
 .box-address {
+  position: fixed;
+  top: 4.4rem;
+  width: 100%;
+  left: 0;
+  z-index: 95;
+  background: #fff;
   border-bottom: 0.1rem solid #eee;
 }
 .box-address .cur-address {
   padding: 1.6rem 3rem 1.6rem 3.8rem;
   font-size: 1.4rem;
   line-height: 2.2rem;
+  min-height: 5.4rem;
   color: #888;
   background: url(./images/gps_1x.png) 1.5rem center no-repeat;
 }
@@ -456,6 +470,9 @@ header .title {
   color: #000;
   position: relative;
 }
+.box-address-items .address-item.active {
+  background: #eee;
+}
 .box-address-items .address-item::after {
   content: '';
   position: absolute;
@@ -465,8 +482,8 @@ header .title {
   height: 100%;
   background: url(./images/arrow_1x.png) 0.4rem center no-repeat;
 }
-.box-address-items .address-item.no-next-grade {
-  background: none;
+.box-address-items .address-item.no-next-grade::after {
+  display: none;
 }
 
 .loading {
@@ -474,7 +491,7 @@ header .title {
   text-align: center;
 }
 .loading span {
-  padding: 3rem 6rem;
+  padding: 3rem 5.5rem;
   font-size: 1.2rem;
   background: url(./images/loading_1x.gif) left center no-repeat;
   background-size: 5rem 5rem;

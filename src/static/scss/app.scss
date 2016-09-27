@@ -14,6 +14,7 @@ html {
   .loading{
    span{
     background: url(./images/loading_2x.gif) left center no-repeat;
+    background-size:5rem 5rem;
    }
   }
 
@@ -130,6 +131,9 @@ a {
 .app-main{
  height:100%;
  padding-top:4.4rem;
+ &.app-main-address{
+  padding-top:9.9rem;
+ }
 }
 header {
  width: 100%;
@@ -379,6 +383,9 @@ header {
    line-height: 2.2rem;
    color:$lightestFontColor;
    position: relative;
+   span{
+    color:$fontColor;
+   }
    &::after{
     content: '';
     position: absolute;
@@ -436,11 +443,18 @@ header {
 }
 
 .box-address{
+ position: fixed;
+ top:4.4rem;
+ width: 100%;
+ left:0;
+ z-index:95;
+ background: #fff;
  border-bottom:.1rem solid $lighterBdColor;
  .cur-address{
   padding:1.6rem 3rem 1.6rem 3.8rem;
   font-size:1.4rem;
   line-height: 2.2rem;
+  min-height: 5.4rem;
   color:$lightestFontColor;
   background: url(./images/gps_1x.png) 1.5rem center no-repeat;
  }
@@ -454,6 +468,9 @@ header {
   line-height: 2.2rem;
   color:$fontColor;
   position: relative;
+  &.active{
+   background: $darkerBgColor;
+  }
   &::after{
    content: '';
    position: absolute;
@@ -463,8 +480,8 @@ header {
    height: 100%;
    background: url(./images/arrow_1x.png) .4rem center no-repeat;
   }
-  &.no-next-grade{
-   background: none;
+  &.no-next-grade::after{
+   display: none;
   }
  }
 }
@@ -473,7 +490,7 @@ header {
  margin-top: 15rem;
  text-align: center;
  span{
-  padding:3rem 6rem;
+  padding:3rem 5.5rem;
   font-size:1.2rem;
   background: url(./images/loading_1x.gif) left center no-repeat;
   background-size:5rem 5rem;

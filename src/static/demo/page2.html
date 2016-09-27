@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+  <title>交易成功</title>
+  <link type="text/css" rel="stylesheet" href="../../../lib/app.css">
+</head>
+<body>
+  <section class="app-container">
+    <header>
+      <div class="title">交易成功</div>
+    </header>
+    <section class="app-main">
+      <section class="box-order-success">
+        <div class="success-info">
+          <span>交易成功</span>
+        </div>
+        <div class="order-number">
+          <span>订单号：</span> 00000000010000000000000
+        </div>
+        <div class="expire-date">
+          购买后有效期至2016-09-23
+        </div>
+      </section>
+      <div class="box-success-btn">
+        <a href="javascript:;" id="to-referer">返回首页</a>
+      </div>
+      <div class="box-success-btn">
+        <a href="javascript:;" id="get-invoice" class="btn-get-invoice">索要发票</a>
+      </div>
+    </section>
+  </section>
+
+  <script type="text/javascript" src="../js/zepto-1.2.0.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $('#to-referer').on('click', function () {
+        alert('back to referer!');
+        window.location.href = './page1.html';
+      });
+      $('#get-invoice').on('click', function () {
+        alert('get invoice!');
+        window.location.href = './page3.html';
+      });
+    });
+  </script>
+</body>
+</html>

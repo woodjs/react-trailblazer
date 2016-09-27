@@ -9,6 +9,7 @@ export class Content extends Component {
 
   render() {
     return (
+
       <section className="app-main">
         <section className="box-product-info">
           <div className="product-title">正版SGMW-EPC移动版（最齐全、最准确、最及时  ）</div>

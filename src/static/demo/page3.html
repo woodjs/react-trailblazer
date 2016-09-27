@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+  <title>索要发票</title>
+  <link type="text/css" rel="stylesheet" href="../../../lib/app.css">
+  <script type="text/javascript">
+    var globalConfig = {
+      context: {
+        path: '',
+        lang: ''
+      },
+      userState: {
+      }
+    };
+    var pageConfig = {
+      pageCode: 'invoice'
+    };
+  </script>
+</head>
+<body>
+<div class="app">
+
+  <section class="app-container" id="invoice-type">
+    <header>
+      <a href="javascript:;" class="btn btn-back" id="to-referer"></a>
+      <div class="title">选择发票类型</div>
+    </header>
+    <section  class="app-main">
+      <section class="box-invoice-type">
+        <a href="javascript:;" class="item-invoice-type" data-target="normal-invoice">增值税-普通发票<span>(最近一次开票)</span></a>
+        <a href="javascript:;" class="item-invoice-type" data-target="special-invoice">增值税-专用发票</a>
+      </section>
+    </section>
+  </section>
+
+  <section class="app-container" style="display: none;" id="normal-invoice">
+    <header>
+      <a href="javascript:;" class="btn btn-back to-invoice-type"></a>
+      <div class="title">增值税-普通发票</div>
+    </header>
+    <section  class="app-main">
+      <section class="box-invoice-input">
+        <div class="invoice-input">
+          <input class="company" type="text" placeholder="公司名称 / 个人（发票抬头）" />
+        </div>
+        <div class="split-line"></div>
+        <div class="invoice-input">
+          <input class="user" type="text" placeholder="收件人姓名" />
+        </div>
+        <div class="invoice-input">
+          <input class="mobile" type="text" placeholder="手机号码" />
+        </div>
+        <div class="invoice-input">
+          <a class="select-address" href="javascript:;" data-referer="normal-invoice" data-text="选择省市区/县">选择省市区/县</a>
+        </div>
+        <div class="invoice-input">
+          <input class="address" type="text" placeholder="详细收货地址" />
+        </div>
+      </section>
+      <section class="wrapper-btn-submit">
+        <a href="javascript:;" class="btn btn-submit" id="submit-normal-invoice">确认提交</a>
+      </section>
+    </section>
+  </section>
+
+  <section class="app-container" style="display:none;" id="special-invoice">
+    <header>
+      <a href="javascript:;" class="btn btn-back to-invoice-type"></a>
+      <div class="title">增值税-专用发票</div>
+    </header>
+    <section  class="app-main">
+      <section class="box-invoice-input">
+        <div class="invoice-input">
+          <input class="company" type="text" placeholder="公司名称（发票抬头）" />
+        </div>
+        <div class="invoice-input">
+          <input class="number" type="text" placeholder="纳税人识别号" />
+        </div>
+        <div class="invoice-input">
+          <input class="address" type="text" placeholder="营业地址" />
+        </div>
+        <div class="invoice-input">
+          <input class="phone" type="text" placeholder="电话" />
+        </div>
+        <div class="invoice-input">
+          <input class="bank" type="text" placeholder="开户行" />
+        </div>
+        <div class="invoice-input">
+          <input class="account" type="text" placeholder="开户账号" />
+        </div>
+        <div class="split-line"></div>
+        <div class="invoice-input">
+          <input class="user" type="text" placeholder="收件人姓名" />
+        </div>
+        <div class="invoice-input">
+          <input class="mobile" type="text" placeholder="手机号码" />
+        </div>
+        <div class="invoice-input">
+          <a class="select-address" href="javascript:;" data-referer="special-invoice" data-origin-text="选择省市区/县">选择省市区/县</a>
+        </div>
+        <div class="invoice-input">
+          <input class="address" type="text" placeholder="详细收货地址" />
+        </div>
+      </section>
+      <section class="wrapper-btn-submit">
+        <a href="javascript:;" class="btn btn-submit" id="submit-special-invoice">确认提交</a>
+      </section>
+    </section>
+  </section>
+
+  <section class="app-container" style="display: none;" id="province">
+    <header>
+      <a href="javascript:;" class="btn btn-back" id="to-invoice"></a>
+      <div class="title">选择省</div>
+    </header>
+    <section class="box-address">
+      <div class="cur-address"></div>
+    </section>
+    <section  class="app-main app-main-address">
+      <div class="loading" id="province-list-loading"><span>加载中...</span></div>
+      <section class="box-address-items" id="province-list"></section>
+    </section>
+  </section>
+
+  <section class="app-container" style="display: none;"  id="city">
+    <header>
+      <a href="javascript:;" class="btn btn-back" id="to-province"></a>
+      <div class="title">选择市</div>
+    </header>
+    <section class="box-address">
+      <div class="cur-address"></div>
+    </section>
+    <section  class="app-main app-main-address">
+      <div class="loading" id="city-list-loading"><span>加载中...</span></div>
+      <section class="box-address-items" id="city-list"></section>
+    </section>
+  </section>
+
+  <section class="app-container" style="display: none;" id="area">
+    <header>
+      <a href="javascript:;" class="btn btn-back" id="to-city"></a>
+      <div class="title">选择区域</div>
+    </header>
+    <section class="box-address">
+      <div class="cur-address"></div>
+    </section>
+    <section  class="app-main app-main-address">
+      <div class="loading" id="area-list-loading"><span>加载中...</span></div>
+      <section class="box-address-items" id="area-list"></section>
+    </section>
+  </section>
+</div>
+
+<script type="text/template" id="template-address-item">
+  <% data.forEach(function (item) { %>
+  <div class="address-item <%= item.hasChildren ? '' : 'no-next-grade' %>" data-value="<%= item.value %>"><%= item.text %></div>
+  <% }) %>
+</script>
+
+<script type="text/javascript" src="../js/zepto-1.2.0.min.js"></script>
+<script type="text/javascript" src="../js/ejs-1.0.0.min.js"></script>
+<script type="text/javascript" src="../js/invoice.js"></script>
+</body>
+</html>

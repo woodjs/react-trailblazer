@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+  <title>购买商品</title>
+  <link type="text/css" rel="stylesheet" href="../../../lib/app.css">
+  <script type="text/javascript">
+    var globalConfig = {
+      context: {
+        path: '',
+        lang: ''
+      },
+      userState: {
+      }
+    };
+    var pageConfig = {
+      pageCode: 'buy'
+    };
+  </script>
+</head>
+<body>
+<div class="app">
+
+  <section class="app-container" id="page-buy">
+    <header>
+      <a href="javascript:;" class="btn btn-back" id="to-referer"></a>
+      <div class="title">购买商品</div>
+    </header>
+    <section  class="app-main">
+      <div class="loading" id="product-list-loading"><span>加载中...</span></div>
+      <div id="product-list"></div>
+    </section>
+  </section>
+
+  <section class="app-container" id="page-pay" style="display: none;">
+    <header>
+      <a href="javascript:;" class="btn btn-back" id="to-page-buy"></a>
+      <div class="title">选择支付方式</div>
+    </header>
+    <section  class="app-main">
+      <div class="loading" id="order-loading"><span>加载中...</span></div>
+      <div id="order"></div>
+    </section>
+  </section>
+</div>
+
+<script type="text/template" id="template-product">
+  <% productList.forEach(function (item) {%>
+  <section class="box-product-info">
+    <div class="product-title"><%= item.title %></div>
+    <div class="product-price"><span><%= item.originPrice %></span>/年</div>
+    <div class="product-expire">购买后有效期至<%= item.date %></div>
+    <% if (item.isHasDiscount) { %>
+    <div class="product-discount-info">
+      <label>优惠规则</label>
+      <p><%= item.discountInfo %></p>
+    </div>
+    <% } %>
+    <% if (item.isHasDiscount || item.isHasActualPrice) { %>
+    <div class="product-buy <%= item.productClassName %>">
+      <% if (item.isHasDiscount) { %>
+      <div class="price-info-item">优惠：<span>-<%= item.discountPrice %></span></div>
+      <% } %>
+      <% if (item.isHasActualPrice) { %>
+      <div class="price-info-item">实付款：<span class="real-price"><%= item.actualPrice %></span></div>
+      <% } %>
+      <% if (item.isHasBuyBtn) { %>
+      <a class="btn btn-buy tap-area" href="<%= item.url %>">购买</a>
+      <% } %>
+    </div>
+    <% } %>
+  </section>
+  <% })%>
+</script>
+
+<script type="text/template" id="template-order">
+  <section class="box-order-number">
+    <span>订单号：</span> <%= orderNumber %>
+  </section>
+  <%- productHtml %>
+  <section class="box-pay-list">
+    <a class="pay-item pay-wx">
+      <i class="icon"></i>
+      <span><%= actualPrice %></span>
+      <div>微信支付</div>
+    </a>
+    <a class="pay-item pay-zfb">
+      <i class="icon"></i>
+      <span><%= actualPrice %></span>
+      <div>支付宝支付</div>
+    </a>
+  </section>
+</script>
+
+<script type="text/javascript" src="../js/zepto-1.2.0.min.js"></script>
+<script type="text/javascript" src="../js/ejs-1.0.0.min.js"></script>
+<script type="text/javascript" src="../js/buy.js"></script>
+</body>
+</html>

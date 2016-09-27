@@ -1,0 +1,174 @@
+{
+ "data": [
+  {
+   "value": "110000",
+   "text": "北京市",
+   "hasChildren": true
+  },
+  {
+   "value": "120000",
+   "text": "天津市",
+   "hasChildren": true
+  },
+  {
+   "value": "130000",
+   "text": "河北省",
+   "hasChildren": true
+  },
+  {
+   "value": "140000",
+   "text": "山西省",
+   "hasChildren": true
+  },
+  {
+   "value": "150000",
+   "text": "内蒙古",
+   "hasChildren": true
+  },
+  {
+   "value": "210000",
+   "text": "辽宁省",
+   "hasChildren": true
+  },
+  {
+   "value": "220000",
+   "text": "吉林省",
+   "hasChildren": true
+  },
+  {
+   "value": "230000",
+   "text": "黑龙江省",
+   "hasChildren": true
+  },
+  {
+   "value": "310000",
+   "text": "上海市",
+   "hasChildren": true
+  },
+  {
+   "value": "320000",
+   "text": "江苏省",
+   "hasChildren": true
+  },
+  {
+   "value": "330000",
+   "text": "浙江省",
+   "hasChildren": true
+  },
+  {
+   "value": "340000",
+   "text": "安徽省",
+   "hasChildren": true
+  },
+  {
+   "value": "350000",
+   "text": "福建省",
+   "hasChildren": true
+  },
+  {
+   "value": "360000",
+   "text": "江西省",
+   "hasChildren": true
+  },
+  {
+   "value": "370000",
+   "text": "山东省",
+   "hasChildren": true
+  },
+  {
+   "value": "410000",
+   "text": "河南省",
+   "hasChildren": true
+  },
+  {
+   "value": "420000",
+   "text": "湖北省",
+   "hasChildren": true
+  },
+  {
+   "value": "430000",
+   "text": "湖南省",
+   "hasChildren": true
+  },
+  {
+   "value": "440000",
+   "text": "广东省",
+   "hasChildren": true
+  },
+  {
+   "value": "450000",
+   "text": "广西壮族",
+   "hasChildren": true
+  },
+  {
+   "value": "460000",
+   "text": "海南省",
+   "hasChildren": true
+  },
+  {
+   "value": "500000",
+   "text": "重庆",
+   "hasChildren": true
+  },
+  {
+   "value": "510000",
+   "text": "四川省",
+   "hasChildren": true
+  },
+  {
+   "value": "520000",
+   "text": "贵州省",
+   "hasChildren": true
+  },
+  {
+   "value": "530000",
+   "text": "云南省",
+   "hasChildren": true
+  },
+  {
+   "value": "540000",
+   "text": "西藏",
+   "hasChildren": true
+  },
+  {
+   "value": "610000",
+   "text": "陕西省",
+   "hasChildren": true
+  },
+  {
+   "value": "620000",
+   "text": "甘肃省",
+   "hasChildren": true
+  },
+  {
+   "value": "630000",
+   "text": "青海省",
+   "hasChildren": true
+  },
+  {
+   "value": "640000",
+   "text": "宁夏",
+   "hasChildren": true
+  },
+  {
+   "value": "650000",
+   "text": "新疆",
+   "hasChildren": true
+  },
+  {
+   "value": "710000",
+   "text": "台湾省",
+   "hasChildren": true
+  },
+  {
+   "value": "810000",
+   "text": "香港",
+   "hasChildren": true
+  },
+  {
+   "value": "820000",
+   "text": "澳门",
+   "hasChildren": true
+  }
+ ]
+}

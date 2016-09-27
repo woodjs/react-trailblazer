@@ -1,0 +1,18 @@
+{
+ "productList": [
+  {
+   "title": "啊滴滴答答滴滴答答滴滴答答滴滴答答",
+   "originPrice": "￥1000.00",
+   "date": "2016-11-22",
+   "isHasDiscount": false,
+   "discountInfo": "顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶的地方方法",
+   "productClassName": "",
+   "discountPrice": "￥500.00",
+   "isHasActualPrice": false,
+   "actualPrice": "￥800.00",
+   "isHasBuyBtn": false,
+   "url": "#ccc"
+  }],
+ "orderNumber": 100000200032000230,
+ "actualPrice": "￥8020.00"
+}
