@@ -8,6 +8,8 @@ $(function () {
       self.initEvent();
       self.initTemplate();
       self.initState();
+      self.initAddress();
+      self.initPrompt();
     },
 
     initElement: function () {
@@ -15,6 +17,7 @@ $(function () {
 
       self.jq = {};
 
+      self.jq.$appContainerList = $('.app-container');
       self.jq.$invoiceType = $('#invoice-type');
       self.jq.$itemInvoiceTypeList = $('.item-invoice-type');
       self.jq.$normalInvoice = $('#normal-invoice');
@@ -36,14 +39,18 @@ $(function () {
       self.jq.$toCity = $('#to-city');
       self.jq.$submitNormalInvoice = $('#submit-normal-invoice');
       self.jq.$submitSpecialInvoice = $('#submit-special-invoice');
-      self.jq.$selectAddress = $('.select-address');
+      self.jq.$selectAddressList = $('.select-address');
+      self.jq.$normalSelectAddress = $("#normal-select-address");
+      self.jq.$specialSelectAddress = $("#special-select-address");
+      self.jq.$normalInvoiceInputList = self.jq.$normalInvoice.find('.invoice-input input');
+      self.jq.$specialInvoiceInputList = self.jq.$specialInvoice.find('.invoice-input input');
     },
 
     initEvent: function () {
       var self = this;
 
       self.jq.$toReferer.on('click', function () {
-        alert('to referer!');
+        console.log('to referer!');
         window.location.href = './page1.html';
       });
 
@@ -60,7 +67,7 @@ $(function () {
         self.jq.$invoiceType.show();
       });
 
-      self.jq.$selectAddress.on('click', function () {
+      self.jq.$selectAddressList.on('click', function () {
         var $this = $(this);
         var refererId = $this.data('referer');
 
@@ -74,7 +81,8 @@ $(function () {
       self.jq.$toInvoice.on('click', function () {
         var $this = $(this);
         var refererId = $this.data('referer');
-        self.jq.$province.hide();
+
+        self.jq.$appContainerList.hide();
         $('#' + refererId).show();
       });
 
@@ -89,11 +97,17 @@ $(function () {
       });
 
       self.jq.$submitNormalInvoice.on('click', function () {
-        self.getParams('normal');
+        var $this = $(this);
+
+        if ($this.is('.disabled')) return;
+        self.submitInvoiceInfo('normal');
       });
 
       self.jq.$submitSpecialInvoice.on('click', function () {
-        self.getParams('special');
+        var $this = $(this);
+
+        if ($this.is('.disabled')) return;
+        self.submitInvoiceInfo('special');
       });
     },
 
@@ -113,6 +127,67 @@ $(function () {
       self.state.provinceLoaded = false;
       self.state.cityLoaded = false;
       self.state.areaLoaded = false;
+    },
+
+    initAddress: function () {
+      var self = this;
+      var province = self.jq.$normalSelectAddress.data('province');
+      var city = self.jq.$normalSelectAddress.data('city');
+      var area = self.jq.$normalSelectAddress.data('area');
+
+      self.renderProvince(province);
+      province && self.renderCity(province, city);
+      city && self.renderArea(city, area);
+
+      province && self.jq.$curAddressList.html(self.jq.$normalSelectAddress.html());
+    },
+
+    initPrompt: function () {
+      var self = this;
+      var div = document.createElement('div');
+
+      div.className = 'prompt';
+
+      document.body.appendChild(div);
+
+      self.prompt = div;
+    },
+
+    submitInvoiceInfo: function (type) {
+      var self = this;
+      var params = self.getParams(type);
+
+      if (params) {
+        if (type === 'normal') {
+          self.jq.$submitNormalInvoice.addClass('disabled');
+          self.jq.$submitNormalInvoice.html(self.jq.$submitNormalInvoice.data('submiting'));
+        } else if (type === 'special') {
+          self.jq.$submitSpecialInvoice.addClass('disabled');
+          self.jq.$submitSpecialInvoice.html(self.jq.$submitSpecialInvoice.data('submiting'));
+        }
+
+        util.ajax('/', 'POST', params, function () {
+          alert('您的发票信息已保存，近期会给您寄出。');
+          self.resetSubmitBtn(type);
+          window.location.href = './page1.html';
+        }, function (xhr) {
+
+          util.showPrompt((xhr && xhr.response && xhr.response.message) || 'network error!');
+          self.resetSubmitBtn(type);
+        })
+      }
+    },
+
+    resetSubmitBtn: function (type) {
+      var self = this;
+
+      if (type === 'normal') {
+        self.jq.$submitNormalInvoice.removeClass('disabled');
+        self.jq.$submitNormalInvoice.html(self.jq.$submitNormalInvoice.data('origin-text'));
+      } else if (type === 'special') {
+        self.jq.$submitSpecialInvoice.removeClass('disabled');
+        self.jq.$submitSpecialInvoice.html(self.jq.$submitSpecialInvoice.data('origin-text'));
+      }
     },
 
     setAddressItemStatus: function ($this) {
@@ -143,23 +218,45 @@ $(function () {
 
     setCurAddress: function () {
       var self = this;
-      var province = self.jq.$provinceList.find('.active').html() || '';
-      var city = self.jq.$cityList.find('.active').html() || '';
-      var area = self.jq.$areaList.find('.active').html() || '';
+      var tempProvince = self.jq.$provinceList.find('.active');
+      var tempCity = self.jq.$cityList.find('.active');
+      var tempArea = self.jq.$areaList.find('.active');
+      var province = tempProvince.html() || '';
+      var city = tempCity.html() || '';
+      var area = tempArea.html() || '';
+      var provinceCode = tempProvince.data('value') || '';
+      var cityCode = tempCity.data('value') || '';
+      var areaCode = tempArea.data('value') || '';
       var result = province + city + area;
 
       self.jq.$curAddressList.html(result);
-      self.jq.$selectAddress.html('<span>' + result +'</span>');
+      self.jq.$selectAddressList.html('<span>' + result + '</span>');
+      self.jq.$selectAddressList
+        .data('province', provinceCode)
+        .data('city', cityCode)
+        .data('area', areaCode);
     },
 
-    renderProvince: function () {
+    rebuildAddressData: function (result, code) {
+      var list = result.data;
+      for (var i = 0; i < list.length; i++) {
+        var temp = list[i];
+        temp.className = '';
+        if (!temp.hasChildren) temp.className += ' no-next-grade';
+        if (code && (temp.value == code)) temp.className += ' active';
+      }
+
+      return result;
+    },
+
+    renderProvince: function (code) {
       var self = this;
 
       if (self.state.provinceLoaded) return;
       self.jq.$provinceList.html('');
       self.jq.$provinceListLoading.show();
-      util.loadData('../data/province.json', 'GET', function (result) {
-        var html = ejs.render(self.tpl.addressItem, result);
+      util.ajax('../data/province.json', 'GET', '', function (result) {
+        var html = ejs.render(self.tpl.addressItem, self.rebuildAddressData(result, code));
 
         self.jq.$provinceListLoading.hide();
         self.jq.$provinceList.html(html);
@@ -175,24 +272,32 @@ $(function () {
         var $this = $(this);
         var value;
 
-        if ($this.is('.no-next-grade')) return;
-
         value = $this.data('value');
         self.jq.$province.hide();
-        self.jq.$city.show();
+
         self.setAddressItemStatus($this);
+
+        if ($this.is('.no-next-grade')) {
+          self.jq.$selectAddressList
+            .data('city', '-')
+            .data('area', '-');
+
+          self.jq.$toInvoice.click();
+          return;
+        }
+        self.jq.$city.show();
         self.renderCity();
       });
     },
 
-    renderCity: function () {
-      var self =this;
+    renderCity: function (parentCode, code) {
+      var self = this;
 
       if (self.state.cityLoaded) return;
       self.jq.$cityList.html('');
       self.jq.$cityListLoading.show();
-      util.loadData('../data/city.json', 'GET', function (result) {
-        var html = ejs.render(self.tpl.addressItem, result);
+      util.ajax('../data/city.json', 'GET', '', function (result) {
+        var html = ejs.render(self.tpl.addressItem, self.rebuildAddressData(result, code));
 
         self.jq.$cityListLoading.hide();
         self.jq.$cityList.html(html);
@@ -208,24 +313,31 @@ $(function () {
         var $this = $(this);
         var value;
 
-        if ($this.is('.no-next-grade')) return;
-
         value = $this.data('value');
         self.jq.$city.hide();
-        self.jq.$area.show();
         self.setAddressItemStatus($this);
+
+        if ($this.is('.no-next-grade')) {
+          self.jq.$selectAddressList
+            .data('area', '-');
+
+          self.jq.$toInvoice.click();
+          return;
+        }
+
+        self.jq.$area.show();
         self.renderArea();
       });
     },
 
-    renderArea: function () {
+    renderArea: function (parentCode, code) {
       var self = this;
 
       if (self.state.areaLoaded) return;
       self.jq.$areaList.html('');
       self.jq.$areaListLoading.show();
-      util.loadData('../data/area.json', 'GET', function (result) {
-        var html = ejs.render(self.tpl.addressItem, result);
+      util.ajax('../data/area.json', 'GET', '', function (result) {
+        var html = ejs.render(self.tpl.addressItem, self.rebuildAddressData(result, code));
 
         self.jq.$areaListLoading.hide();
         self.jq.$areaList.html(html);
@@ -242,27 +354,66 @@ $(function () {
         var value = $this.data('value');
 
         self.setAddressItemStatus($this);
+
+        self.jq.$toInvoice.click();
       });
     },
 
     getParams: function (type) {
+      var self = this;
+      var $list = [];
+      var $selectAddress = null;
+      var result = {};
+
       if (type === 'normal') {
-
-      } else if (type = 'special') {
-
+        $list = self.jq.$normalInvoiceInputList;
+        $selectAddress = self.jq.$normalSelectAddress;
+      } else if (type === 'special') {
+        $list = self.jq.$specialInvoiceInputList;
+        $selectAddress = self.jq.$specialSelectAddress;
+      } else {
+        return false;
       }
 
-      alert(type);
+      for (var i = 0; i < $list.length; i++) {
+        var $temp = $($list[i]);
+        var regex = $temp.data('regex');
+        var value = $.trim($temp.val());
+
+        if (value) {
+          result[$.trim($temp.attr('name'))] = value;
+        } else {
+          util.showPrompt(($temp.attr('placeholder') || '') + '必须填写');
+          return false;
+        }
+      }
+
+      if ($selectAddress) {
+        var province = $selectAddress.data('province') || '';
+        var city = $selectAddress.data('city') || '';
+        var area = $selectAddress.data('area') || '';
+
+        if (province && city && area) {
+          result.province = province === '-' ? '' : province;
+          result.city = city === '-' ? '' : city;
+          result.area = area === '-' ? '' : area;
+        } else {
+          util.showPrompt(($selectAddress.data('placeholder') || '') + '必须填写');
+          return false;
+        }
+      }
+
+      return result;
     }
   };
 
   var util = {
-    loadData: function (url, params, successCallback, errorCallback) {
+    ajax: function (url, method, params, successCallback, errorCallback) {
       var self = this;
 
       $.ajax({
         url: url,
-        type: 'GET',
+        type: method || 'GET',
         cache: false,
         timeout: 3000,
         data: params || null,
@@ -275,8 +426,20 @@ $(function () {
         }
       });
     },
-    handleAjaxError: function () {
 
+    handleAjaxError: function (xhr) {
+      var self = this;
+
+      self.showPrompt((xhr && xhr.response && xhr.response.message) || 'network error!');
+    },
+
+    showPrompt: function (val) {
+
+      app.prompt.innerHTML = val;
+      app.prompt.style.opacity = 1;
+      setTimeout(function () {
+        app.prompt.style.opacity = 0;
+      }, 3000);
     }
   };
 

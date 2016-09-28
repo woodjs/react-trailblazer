@@ -7,6 +7,7 @@ $(function () {
       self.initElement();
       self.initEvent();
       self.initTemplate();
+      self.initPrompt();
       self.render();
 
       $('.app,.app-container,html,body').width(document.documentElement.clientWidth + 'px');
@@ -33,7 +34,7 @@ $(function () {
       var self = this;
 
       self.jq.$toReferer.on('click', function () {
-        alert('back to app!');
+        console.log('back to app!');
       });
 
       self.jq.$toPageBuy.on('click', function () {
@@ -48,6 +49,17 @@ $(function () {
 
       self.tpl.product = $('#template-product').html();
       self.tpl.order = $('#template-order').html();
+    },
+
+    initPrompt: function () {
+      var self = this;
+      var div = document.createElement('div');
+
+      div.className = 'prompt';
+
+      document.body.appendChild(div);
+
+      self.prompt = div;
     },
 
     render: function () {
@@ -66,7 +78,7 @@ $(function () {
 
     renderPageBuy: function () {
       var self = this;
-      util.loadData('../data/product_list.json', 'GET', function (result) {
+      util.ajax('../data/product_list.json', 'GET', '', function (result) {
         var html = ejs.render(self.tpl.product, result);
 
         self.jq.$productListLoading.hide();
@@ -77,7 +89,7 @@ $(function () {
 
     renderPagePay: function () {
       var self = this;
-      util.loadData('../data/order.json', 'GET', function (result) {
+      util.ajax('../data/order.json', 'GET', '', function (result) {
         var productHtml = ejs.render(self.tpl.product, result);
         result.productHtml = productHtml;
         var html = ejs.render(self.tpl.order, result);
@@ -124,20 +136,21 @@ $(function () {
       var self = this;
 
       self.jq.$order.find('.pay-item').on('click', function () {
-        alert('pay!');
+        console.log('pay!');
         window.location.href = './page2.html';
       });
     },
 
   };
 
+
   var util = {
-    loadData: function (url, params, successCallback, errorCallback) {
+    ajax: function (url, method, params, successCallback, errorCallback) {
       var self = this;
 
       $.ajax({
         url: url,
-        type: 'GET',
+        type: method || 'GET',
         cache: false,
         timeout: 3000,
         data: params || null,
@@ -150,7 +163,20 @@ $(function () {
         }
       });
     },
-    handleAjaxError: function () {
+
+    handleAjaxError: function (params) {
+      var self = this;
+
+      self.showPrompt((params && params.message) || 'network error!');
+    },
+
+    showPrompt: function (val) {
+
+      app.prompt.innerHTML = val;
+      app.prompt.style.opacity = 1;
+      setTimeout(function () {
+        app.prompt.style.opacity = 0;
+      }, 3000);
     }
   };
 

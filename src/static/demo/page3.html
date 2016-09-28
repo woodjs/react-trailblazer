@@ -43,24 +43,24 @@
     <section  class="app-main">
       <section class="box-invoice-input">
         <div class="invoice-input">
-          <input class="company" type="text" placeholder="公司名称 / 个人（发票抬头）" />
+          <input class="company" name="company" type="text"  placeholder="公司名称 / 个人（发票抬头）" value="" />
         </div>
         <div class="split-line"></div>
         <div class="invoice-input">
-          <input class="user" type="text" placeholder="收件人姓名" />
+          <input class="user" name="user" type="text" placeholder="收件人姓名" value="" />
         </div>
         <div class="invoice-input">
-          <input class="mobile" type="text" placeholder="手机号码" />
+          <input class="mobile" name="mobile" type="text" placeholder="手机号码"  value="" />
         </div>
         <div class="invoice-input">
-          <a class="select-address" href="javascript:;" data-referer="normal-invoice" data-text="选择省市区/县">选择省市区/县</a>
+          <a class="select-address" id="normal-select-address" data-province="320000" data-city="320900" data-area="320922" href="javascript:;" data-referer="normal-invoice" data-placeholder="省市区/县"  data-origin-text="选择省市区/县">江苏省盐城市滨海县</a>
         </div>
         <div class="invoice-input">
-          <input class="address" type="text" placeholder="详细收货地址" />
+          <input class="address" name="address" type="text" placeholder="详细收货地址" value="" />
         </div>
       </section>
       <section class="wrapper-btn-submit">
-        <a href="javascript:;" class="btn btn-submit" id="submit-normal-invoice">确认提交</a>
+        <a href="javascript:;" class="btn btn-submit" data-submiting="提交中..." data-origin-text="确认提交" id="submit-normal-invoice">确认提交</a>
       </section>
     </section>
   </section>
@@ -73,39 +73,39 @@
     <section  class="app-main">
       <section class="box-invoice-input">
         <div class="invoice-input">
-          <input class="company" type="text" placeholder="公司名称（发票抬头）" />
+          <input class="company" name="address" type="text" placeholder="公司名称（发票抬头）"  value="" />
         </div>
         <div class="invoice-input">
-          <input class="number" type="text" placeholder="纳税人识别号" />
+          <input class="number" name="number" type="text" placeholder="纳税人识别号"  value="" />
         </div>
         <div class="invoice-input">
-          <input class="address" type="text" placeholder="营业地址" />
+          <input class="address" name="address" type="text" placeholder="营业地址"  value="" />
         </div>
         <div class="invoice-input">
-          <input class="phone" type="text" placeholder="电话" />
+          <input class="phone" name="phone" type="text" placeholder="电话"  value="" />
         </div>
         <div class="invoice-input">
-          <input class="bank" type="text" placeholder="开户行" />
+          <input class="bank" name="bank" type="text" placeholder="开户行"  value="" />
         </div>
         <div class="invoice-input">
-          <input class="account" type="text" placeholder="开户账号" />
+          <input class="account" name="account" type="text" placeholder="开户账号"  value="" />
         </div>
         <div class="split-line"></div>
         <div class="invoice-input">
-          <input class="user" type="text" placeholder="收件人姓名" />
+          <input class="user" name="user" type="text" placeholder="收件人姓名"  value="" />
         </div>
         <div class="invoice-input">
-          <input class="mobile" type="text" placeholder="手机号码" />
+          <input class="mobile" name="mobile" type="text" placeholder="手机号码"  value="" />
         </div>
         <div class="invoice-input">
-          <a class="select-address" href="javascript:;" data-referer="special-invoice" data-origin-text="选择省市区/县">选择省市区/县</a>
+          <a class="select-address" id="special-select-address" data-province="320000" data-city="320900" data-area="320922" href="javascript:;" data-referer="special-invoice" data-placeholder="省市区/县" data-origin-text="选择省市区/县">江苏省盐城市滨海县</a>
         </div>
         <div class="invoice-input">
-          <input class="address" type="text" placeholder="详细收货地址" />
+          <input class="address" name="address" type="text" placeholder="详细收货地址"  value="" />
         </div>
       </section>
       <section class="wrapper-btn-submit">
-        <a href="javascript:;" class="btn btn-submit" id="submit-special-invoice">确认提交</a>
+        <a href="javascript:;" class="btn btn-submit" data-submiting="提交中..." data-origin-text="确认提交" id="submit-special-invoice">确认提交</a>
       </section>
     </section>
   </section>
@@ -155,7 +155,7 @@
 
 <script type="text/template" id="template-address-item">
   <% data.forEach(function (item) { %>
-  <div class="address-item <%= item.hasChildren ? '' : 'no-next-grade' %>" data-value="<%= item.value %>"><%= item.text %></div>
+  <div class="address-item <%= item.className %>" data-value="<%= item.value %>"><%= item.text %></div>
   <% }) %>
 </script>
 

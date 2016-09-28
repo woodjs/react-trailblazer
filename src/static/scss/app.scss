@@ -453,9 +453,13 @@ header {
   border:.1rem solid $btnBlueBdColor;
   background: $btnBlueBgColor;
   height: 5rem;
-  line-height: 5rem;
+  line-height: 4.8rem;
   text-align: center;
   color:#fff;
+  &.disabled{
+   background: $darkerBgColor;
+   border:.1rem solid $darkerBgColor;
+  }
  }
 }
 
@@ -520,11 +524,13 @@ header {
  padding:.5rem 3rem;
  color:#fff;
  text-align: center;
- max-width: 50%;
+ max-width: 70%;
  background: rgba(0,0,0,.6);
  position:fixed;
  left:50%;
  bottom:5rem;
  z-index:105;
+ @include opacity(0);
  @include transform(translate(-50%, 0));
+ @include transition(all .3s ease-in-out);
 }
