@@ -9,8 +9,6 @@ $(function () {
       self.initTemplate();
       self.initPrompt();
       self.render();
-
-      $('.app,.app-container,html,body').width(document.documentElement.clientWidth + 'px');
     },
 
     initElement: function () {
@@ -89,7 +87,10 @@ $(function () {
 
     renderPagePay: function () {
       var self = this;
-      util.ajax('../data/order.json', 'GET', '', function (result) {
+
+      self.jq.$order.html('');
+      self.jq.$orderLoading.show();
+      util.ajax('../data/order.json?_=' + Math.random(), 'GET', '', function (result) {
         var productHtml = ejs.render(self.tpl.product, result);
         result.productHtml = productHtml;
         var html = ejs.render(self.tpl.order, result);
@@ -103,23 +104,16 @@ $(function () {
     showPageBuy: function () {
       var self = this;
 
-      self.jq.$pagePayHeader.css({
-        left: '100%'
-      });
-      self.jq.$pagePay.css({
-        left: '100%'
-      });
+
+      self.jq.$pagePay.hide();
+      self.jq.$pageBuy.show();
     },
 
     showPagePay: function () {
       var self = this;
 
-      self.jq.$pagePayHeader.css({
-        left: '0'
-      });
-      self.jq.$pagePay.css({
-        left: '0'
-      });
+      self.jq.$pageBuy.hide();
+      self.jq.$pagePay.show();
 
       self.renderPagePay();
     },

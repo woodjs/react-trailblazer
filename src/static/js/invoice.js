@@ -8,6 +8,7 @@ $(function () {
       self.initEvent();
       self.initTemplate();
       self.initState();
+      self.initStore();
       self.initAddress();
       self.initPrompt();
     },
@@ -129,6 +130,15 @@ $(function () {
       self.state.areaLoaded = false;
     },
 
+    initStore: function () {
+      var self = this;
+
+      self.store = {};
+      self.store.address = {
+        province: null
+      };
+    },
+
     initAddress: function () {
       var self = this;
       var province = self.jq.$normalSelectAddress.data('province');
@@ -137,7 +147,7 @@ $(function () {
 
       self.renderProvince(province);
       province && self.renderCity(province, city);
-      city && self.renderArea(city, area);
+      city && self.renderArea(province, city, area);
 
       province && self.jq.$curAddressList.html(self.jq.$normalSelectAddress.html());
     },
@@ -216,6 +226,24 @@ $(function () {
       self.setCurAddress();
     },
 
+    setStore: function (type, data, indexObj) {
+      var self = this;
+      var tempCity = self.store.address.province && self.store.address.province[indexObj.province];
+      switch (type) {
+        case 'province':
+          self.store.address.province = data;
+          break;
+        case 'city':
+          tempCity && (tempCity.children = data);
+          break;
+        case 'area':
+          tempCity && tempCity.children && tempCity.children[indexObj.city] && (tempCity.children[indexObj.city].children = data);
+          break;
+        default:
+      }
+      console.log(self.store.address);
+    },
+
     setCurAddress: function () {
       var self = this;
       var tempProvince = self.jq.$provinceList.find('.active');
@@ -238,30 +266,39 @@ $(function () {
     },
 
     rebuildAddressData: function (result, code) {
+      var self = this;
       var list = result.data;
+      var storeTemp = {};
       for (var i = 0; i < list.length; i++) {
         var temp = list[i];
         temp.className = '';
         if (!temp.hasChildren) temp.className += ' no-next-grade';
         if (code && (temp.value == code)) temp.className += ' active';
+
+        storeTemp[temp.value] = temp;
       }
 
-      return result;
+      return {
+        storeData: storeTemp,
+        renderData: result
+      };
     },
 
-    renderProvince: function (code) {
+    renderProvince: function (provinceCode) {
       var self = this;
 
       if (self.state.provinceLoaded) return;
       self.jq.$provinceList.html('');
       self.jq.$provinceListLoading.show();
       util.ajax('../data/province.json', 'GET', '', function (result) {
-        var html = ejs.render(self.tpl.addressItem, self.rebuildAddressData(result, code));
+        var data = self.rebuildAddressData(result, provinceCode);
+        var html = ejs.render(self.tpl.addressItem, data.renderData);
 
         self.jq.$provinceListLoading.hide();
         self.jq.$provinceList.html(html);
         self.initProvinceEvent();
         self.state.provinceLoaded = true;
+        self.setStore('province', data.storeData);
       });
     },
 
@@ -290,19 +327,23 @@ $(function () {
       });
     },
 
-    renderCity: function (parentCode, code) {
+    renderCity: function (provinceCode, cityCode) {
       var self = this;
 
       if (self.state.cityLoaded) return;
       self.jq.$cityList.html('');
       self.jq.$cityListLoading.show();
       util.ajax('../data/city.json', 'GET', '', function (result) {
-        var html = ejs.render(self.tpl.addressItem, self.rebuildAddressData(result, code));
+        var data = self.rebuildAddressData(result, cityCode);
+        var html = ejs.render(self.tpl.addressItem, data.renderData);
 
         self.jq.$cityListLoading.hide();
         self.jq.$cityList.html(html);
         self.initCityEvent();
         self.state.cityLoaded = true;
+        self.setStore('city', data.storeData, {
+          province: provinceCode
+        });
       });
     },
 
@@ -330,19 +371,24 @@ $(function () {
       });
     },
 
-    renderArea: function (parentCode, code) {
+    renderArea: function (provinceCode, cityCode, areaCode) {
       var self = this;
 
       if (self.state.areaLoaded) return;
       self.jq.$areaList.html('');
       self.jq.$areaListLoading.show();
       util.ajax('../data/area.json', 'GET', '', function (result) {
-        var html = ejs.render(self.tpl.addressItem, self.rebuildAddressData(result, code));
+        var data = self.rebuildAddressData(result, areaCode);
+        var html = ejs.render(self.tpl.addressItem, data.renderData);
 
         self.jq.$areaListLoading.hide();
         self.jq.$areaList.html(html);
         self.initAreaEvent();
         self.state.areaLoaded = true;
+        self.setStore('area', data.storeData, {
+          province: provinceCode,
+          city: cityCode
+        });
       });
     },
 
