@@ -11,7 +11,8 @@
    "isHasActualPrice": false,
    "actualPrice": "￥800.00",
    "isHasBuyBtn": false,
-   "url": "#ccc"
+   "url": "/",
+   "productId": "a"
   }],
  "orderNumber": 100000200032000230,
  "actualPrice": "￥8020.00"

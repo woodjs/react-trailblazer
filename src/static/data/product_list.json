@@ -11,7 +11,8 @@
    "isHasActualPrice": true,
    "actualPrice": "￥800.00",
    "isHasBuyBtn": true,
-   "url": "#ccc"
+   "url": "/",
+   "productId": "a1"
   },
   {
    "title": "啊滴滴答答滴滴答答滴滴答答滴滴答答",
@@ -24,7 +25,8 @@
    "isHasActualPrice": true,
    "actualPrice": "￥800.00",
    "isHasBuyBtn": true,
-   "url": "#ccc"
+   "url": "/",
+   "productId": "a2"
   },
   {
    "title": "啊滴滴答答滴滴答答滴滴答答滴滴答答",
@@ -37,7 +39,8 @@
    "isHasActualPrice": true,
    "actualPrice": "￥800.00",
    "isHasBuyBtn": true,
-   "url": "#ccc"
+   "url": "/",
+   "productId": "a3"
   },
   {
    "title": "啊滴滴答答滴滴答答滴滴答答滴滴答答",
@@ -50,7 +53,8 @@
    "isHasActualPrice": true,
    "actualPrice": "￥800.00",
    "isHasBuyBtn": true,
-   "url": "#ccc"
+   "url": "/",
+   "productId": "a4"
   },
   {
    "title": "啊滴滴答答滴滴答答滴滴答答滴滴答答",
@@ -63,7 +67,8 @@
    "isHasActualPrice": true,
    "actualPrice": "￥800.00",
    "isHasBuyBtn": true,
-   "url": "#ccc"
+   "url": "/",
+   "productId": "a5"
   },
   {
    "title": "啊滴滴答答滴滴答答滴滴答答滴滴答答",
@@ -76,7 +81,8 @@
    "isHasActualPrice": true,
    "actualPrice": "￥800.00",
    "isHasBuyBtn": true,
-   "url": "#ccc"
+   "url": "/",
+   "productId": "a6"
   },
   {
    "title": "啊滴滴答答滴滴答答滴滴答答滴滴答答",
@@ -89,7 +95,8 @@
    "isHasActualPrice": true,
    "actualPrice": "￥800.00",
    "isHasBuyBtn": true,
-   "url": "#ccc"
+   "url": "/",
+   "productId": "a7"
   }
  ]
 }

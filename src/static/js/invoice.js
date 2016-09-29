@@ -10,7 +10,6 @@ $(function () {
       self.initState();
       self.initStore();
       self.initAddress();
-      self.initPrompt();
     },
 
     initElement: function () {
@@ -134,9 +133,9 @@ $(function () {
       var self = this;
 
       self.store = {};
-      self.store.address = {
-        province: null
-      };
+      self.store.province = {};
+      self.store.city = {};
+      self.store.area = {};
     },
 
     initAddress: function () {
@@ -150,17 +149,6 @@ $(function () {
       city && self.renderArea(province, city, area);
 
       province && self.jq.$curAddressList.html(self.jq.$normalSelectAddress.html());
-    },
-
-    initPrompt: function () {
-      var self = this;
-      var div = document.createElement('div');
-
-      div.className = 'prompt';
-
-      document.body.appendChild(div);
-
-      self.prompt = div;
     },
 
     submitInvoiceInfo: function (type) {
@@ -177,7 +165,7 @@ $(function () {
         }
 
         util.ajax('/', 'POST', params, function () {
-          alert('您的发票信息已保存，近期会给您寄出。');
+          alert(i18n.invoice_1);
           self.resetSubmitBtn(type);
           window.location.href = './page1.html';
         }, function (xhr) {
@@ -228,20 +216,47 @@ $(function () {
 
     setStore: function (type, data, indexObj) {
       var self = this;
-      var tempCity = self.store.address.province && self.store.address.province[indexObj.province];
+      var temp;
       switch (type) {
         case 'province':
-          self.store.address.province = data;
+          self.store.province.children = data;
           break;
         case 'city':
-          tempCity && (tempCity.children = data);
+          self.store.city[indexObj.province] = {};
+          self.store.city[indexObj.province].children = data;
           break;
         case 'area':
-          tempCity && tempCity.children && tempCity.children[indexObj.city] && (tempCity.children[indexObj.city].children = data);
+          if (!self.store.area[indexObj.province]) self.store.area[indexObj.province] = {};
+          temp = self.store.area[indexObj.province];
+          if (!temp.children) temp.children = {};
+          temp.children[indexObj.city] = {};
+          temp.children[indexObj.city].children = data;
           break;
         default:
       }
-      console.log(self.store.address);
+    },
+
+    getStore: function (type, indexObj) {
+      var self = this;
+      var temp;
+      var data;
+
+      switch (type) {
+        case 'province':
+          data = self.store.province.children || null;
+          break;
+        case 'city':
+          temp = self.store.city[indexObj.province];
+          data = (temp && temp.children) || null;
+          break;
+        case 'area':
+          temp = self.store.area[indexObj.province];
+          data = (temp && temp.children && temp.children[indexObj.city] && temp.children[indexObj.city].children ) || null;
+          break;
+        default:
+      }
+
+      return data;
     },
 
     setCurAddress: function () {
@@ -268,20 +283,14 @@ $(function () {
     rebuildAddressData: function (result, code) {
       var self = this;
       var list = result.data;
-      var storeTemp = {};
       for (var i = 0; i < list.length; i++) {
         var temp = list[i];
         temp.className = '';
         if (!temp.hasChildren) temp.className += ' no-next-grade';
         if (code && (temp.value == code)) temp.className += ' active';
-
-        storeTemp[temp.value] = temp;
       }
 
-      return {
-        storeData: storeTemp,
-        renderData: result
-      };
+      return result;
     },
 
     renderProvince: function (provinceCode) {
@@ -290,16 +299,25 @@ $(function () {
       if (self.state.provinceLoaded) return;
       self.jq.$provinceList.html('');
       self.jq.$provinceListLoading.show();
-      util.ajax('../data/province.json', 'GET', '', function (result) {
-        var data = self.rebuildAddressData(result, provinceCode);
-        var html = ejs.render(self.tpl.addressItem, data.renderData);
+
+      var data = self.getStore('province');
+      if (data) {
+        successCallback(data, true);
+        return;
+      }
+
+      util.ajax('../data/province.json', 'GET', '', successCallback);
+
+      function successCallback(result, isLocal) {
+        if (!isLocal) self.setStore('province', result);
+
+        var html = ejs.render(self.tpl.addressItem, self.rebuildAddressData(result, provinceCode));
 
         self.jq.$provinceListLoading.hide();
         self.jq.$provinceList.html(html);
         self.initProvinceEvent();
         self.state.provinceLoaded = true;
-        self.setStore('province', data.storeData);
-      });
+      }
     },
 
     initProvinceEvent: function () {
@@ -323,7 +341,7 @@ $(function () {
           return;
         }
         self.jq.$city.show();
-        self.renderCity();
+        self.renderCity(self.jq.$normalSelectAddress.data('province'));
       });
     },
 
@@ -333,18 +351,31 @@ $(function () {
       if (self.state.cityLoaded) return;
       self.jq.$cityList.html('');
       self.jq.$cityListLoading.show();
-      util.ajax('../data/city.json', 'GET', '', function (result) {
-        var data = self.rebuildAddressData(result, cityCode);
-        var html = ejs.render(self.tpl.addressItem, data.renderData);
+
+      var data = self.getStore('city', {
+        province: provinceCode
+      });
+      if (data) {
+        successCallback(data, true);
+        return;
+      }
+
+      util.ajax('../data/city.json', 'GET', '', successCallback);
+
+      function successCallback(result, isLocal) {
+        if (!isLocal) {
+          self.setStore('city', result, {
+            province: provinceCode
+          });
+        }
+
+        var html = ejs.render(self.tpl.addressItem, self.rebuildAddressData(result, cityCode));
 
         self.jq.$cityListLoading.hide();
         self.jq.$cityList.html(html);
         self.initCityEvent();
         self.state.cityLoaded = true;
-        self.setStore('city', data.storeData, {
-          province: provinceCode
-        });
-      });
+      }
     },
 
     initCityEvent: function () {
@@ -367,7 +398,7 @@ $(function () {
         }
 
         self.jq.$area.show();
-        self.renderArea();
+        self.renderArea(self.jq.$normalSelectAddress.data('province'), self.jq.$normalSelectAddress.data('city'));
       });
     },
 
@@ -377,19 +408,33 @@ $(function () {
       if (self.state.areaLoaded) return;
       self.jq.$areaList.html('');
       self.jq.$areaListLoading.show();
-      util.ajax('../data/area.json', 'GET', '', function (result) {
-        var data = self.rebuildAddressData(result, areaCode);
-        var html = ejs.render(self.tpl.addressItem, data.renderData);
+
+      var data = self.getStore('area', {
+        province: provinceCode,
+        city: cityCode
+      });
+      if (data) {
+        successCallback(data, true);
+        return;
+      }
+
+      util.ajax('../data/area.json', 'GET', '', successCallback);
+
+      function successCallback(result, isLocal) {
+        if (!isLocal) {
+          self.setStore('area', result, {
+            province: provinceCode,
+            city: cityCode
+          });
+        }
+
+        var html = ejs.render(self.tpl.addressItem, self.rebuildAddressData(result, areaCode));
 
         self.jq.$areaListLoading.hide();
         self.jq.$areaList.html(html);
         self.initAreaEvent();
         self.state.areaLoaded = true;
-        self.setStore('area', data.storeData, {
-          province: provinceCode,
-          city: cityCode
-        });
-      });
+      }
     },
 
     initAreaEvent: function () {
@@ -429,7 +474,7 @@ $(function () {
         if (value) {
           result[$.trim($temp.attr('name'))] = value;
         } else {
-          util.showPrompt(($temp.attr('placeholder') || '') + '必须填写');
+          util.showPrompt(($temp.attr('placeholder') || '') + i18n.invoice_2);
           return false;
         }
       }
@@ -444,7 +489,7 @@ $(function () {
           result.city = city === '-' ? '' : city;
           result.area = area === '-' ? '' : area;
         } else {
-          util.showPrompt(($selectAddress.data('placeholder') || '') + '必须填写');
+          util.showPrompt(($selectAddress.data('placeholder') || '') + i18n.invoice_2);
           return false;
         }
       }
@@ -454,6 +499,12 @@ $(function () {
   };
 
   var util = {
+    init: function () {
+      var self = this;
+
+      self.initPrompt();
+    },
+
     ajax: function (url, method, params, successCallback, errorCallback) {
       var self = this;
 
@@ -479,15 +530,28 @@ $(function () {
       self.showPrompt((xhr && xhr.response && xhr.response.message) || 'network error!');
     },
 
-    showPrompt: function (val) {
+    initPrompt: function () {
+      var self = this;
+      var div = document.createElement('div');
 
-      app.prompt.innerHTML = val;
-      app.prompt.style.opacity = 1;
+      div.className = 'prompt';
+
+      document.body.appendChild(div);
+
+      self.prompt = div;
+    },
+
+    showPrompt: function (val) {
+      var self = this;
+
+      self.prompt.innerHTML = val;
+      self.prompt.style.opacity = 1;
       setTimeout(function () {
-        app.prompt.style.opacity = 0;
+        self.prompt.style.opacity = 0;
       }, 3000);
     }
   };
 
   app.init();
+  util.init();
 });

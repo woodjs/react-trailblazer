@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
   <title>索要发票</title>
   <link type="text/css" rel="stylesheet" href="../../../lib/app.css">
   <script type="text/javascript">
@@ -11,11 +12,14 @@
         path: '',
         lang: ''
       },
-      userState: {
-      }
+      userState: {}
     };
     var pageConfig = {
       pageCode: 'invoice'
+    };
+    var i18n = {
+      invoice_1: '您的发票信息已保存，近期会给您寄出。',
+      invoice_2: '必须填写',
     };
   </script>
 </head>
@@ -27,7 +31,7 @@
       <a href="javascript:;" class="btn btn-back" id="to-referer"></a>
       <div class="title">选择发票类型</div>
     </header>
-    <section  class="app-main">
+    <section class="app-main">
       <section class="box-invoice-type">
         <a href="javascript:;" class="item-invoice-type" data-target="normal-invoice">增值税-普通发票<span>(最近一次开票)</span></a>
         <a href="javascript:;" class="item-invoice-type" data-target="special-invoice">增值税-专用发票</a>
@@ -40,27 +44,30 @@
       <a href="javascript:;" class="btn btn-back to-invoice-type"></a>
       <div class="title">增值税-普通发票</div>
     </header>
-    <section  class="app-main">
+    <section class="app-main">
       <section class="box-invoice-input">
         <div class="invoice-input">
-          <input class="company" name="company" type="text"  placeholder="公司名称 / 个人（发票抬头）" value="" />
+          <input class="company" name="company" type="text" placeholder="公司名称 / 个人（发票抬头）" value=""/>
         </div>
         <div class="split-line"></div>
         <div class="invoice-input">
-          <input class="user" name="user" type="text" placeholder="收件人姓名" value="" />
+          <input class="user" name="user" type="text" placeholder="收件人姓名" value=""/>
         </div>
         <div class="invoice-input">
-          <input class="mobile" name="mobile" type="text" placeholder="手机号码"  value="" />
+          <input class="mobile" name="mobile" type="text" placeholder="手机号码" value=""/>
         </div>
         <div class="invoice-input">
-          <a class="select-address" id="normal-select-address" data-province="320000" data-city="320900" data-area="320922" href="javascript:;" data-referer="normal-invoice" data-placeholder="省市区/县"  data-origin-text="选择省市区/县">江苏省盐城市滨海县</a>
+          <a class="select-address" id="normal-select-address" data-province="320000" data-city="320900"
+             data-area="320922" href="javascript:;" data-referer="normal-invoice" data-placeholder="省市区/县"
+             data-origin-text="选择省市区/县">江苏省盐城市滨海县</a>
         </div>
         <div class="invoice-input">
-          <input class="address" name="address" type="text" placeholder="详细收货地址" value="" />
+          <input class="address" name="address" type="text" placeholder="详细收货地址" value=""/>
         </div>
       </section>
       <section class="wrapper-btn-submit">
-        <a href="javascript:;" class="btn btn-submit" data-submiting="提交中..." data-origin-text="确认提交" id="submit-normal-invoice">确认提交</a>
+        <a href="javascript:;" class="btn btn-submit" data-submiting="提交中..." data-origin-text="确认提交"
+           id="submit-normal-invoice">确认提交</a>
       </section>
     </section>
   </section>
@@ -70,42 +77,45 @@
       <a href="javascript:;" class="btn btn-back to-invoice-type"></a>
       <div class="title">增值税-专用发票</div>
     </header>
-    <section  class="app-main">
+    <section class="app-main">
       <section class="box-invoice-input">
         <div class="invoice-input">
-          <input class="company" name="address" type="text" placeholder="公司名称（发票抬头）"  value="" />
+          <input class="company" name="address" type="text" placeholder="公司名称（发票抬头）" value=""/>
         </div>
         <div class="invoice-input">
-          <input class="number" name="number" type="text" placeholder="纳税人识别号"  value="" />
+          <input class="number" name="number" type="text" placeholder="纳税人识别号" value=""/>
         </div>
         <div class="invoice-input">
-          <input class="address" name="address" type="text" placeholder="营业地址"  value="" />
+          <input class="address" name="address" type="text" placeholder="营业地址" value=""/>
         </div>
         <div class="invoice-input">
-          <input class="phone" name="phone" type="text" placeholder="电话"  value="" />
+          <input class="phone" name="phone" type="text" placeholder="电话" value=""/>
         </div>
         <div class="invoice-input">
-          <input class="bank" name="bank" type="text" placeholder="开户行"  value="" />
+          <input class="bank" name="bank" type="text" placeholder="开户行" value=""/>
         </div>
         <div class="invoice-input">
-          <input class="account" name="account" type="text" placeholder="开户账号"  value="" />
+          <input class="account" name="account" type="text" placeholder="开户账号" value=""/>
         </div>
         <div class="split-line"></div>
         <div class="invoice-input">
-          <input class="user" name="user" type="text" placeholder="收件人姓名"  value="" />
+          <input class="user" name="user" type="text" placeholder="收件人姓名" value=""/>
         </div>
         <div class="invoice-input">
-          <input class="mobile" name="mobile" type="text" placeholder="手机号码"  value="" />
+          <input class="mobile" name="mobile" type="text" placeholder="手机号码" value=""/>
         </div>
         <div class="invoice-input">
-          <a class="select-address" id="special-select-address" data-province="320000" data-city="320900" data-area="320922" href="javascript:;" data-referer="special-invoice" data-placeholder="省市区/县" data-origin-text="选择省市区/县">江苏省盐城市滨海县</a>
+          <a class="select-address" id="special-select-address" data-province="320000" data-city="320900"
+             data-area="320922" href="javascript:;" data-referer="special-invoice" data-placeholder="省市区/县"
+             data-origin-text="选择省市区/县">江苏省盐城市滨海县</a>
         </div>
         <div class="invoice-input">
-          <input class="address" name="address" type="text" placeholder="详细收货地址"  value="" />
+          <input class="address" name="address" type="text" placeholder="详细收货地址" value=""/>
         </div>
       </section>
       <section class="wrapper-btn-submit">
-        <a href="javascript:;" class="btn btn-submit" data-submiting="提交中..." data-origin-text="确认提交" id="submit-special-invoice">确认提交</a>
+        <a href="javascript:;" class="btn btn-submit" data-submiting="提交中..." data-origin-text="确认提交"
+           id="submit-special-invoice">确认提交</a>
       </section>
     </section>
   </section>
@@ -118,13 +128,13 @@
     <section class="box-address">
       <div class="cur-address"></div>
     </section>
-    <section  class="app-main app-main-address">
+    <section class="app-main app-main-address">
       <div class="loading" id="province-list-loading"><span>加载中...</span></div>
       <section class="box-address-items" id="province-list"></section>
     </section>
   </section>
 
-  <section class="app-container" style="display: none;"  id="city">
+  <section class="app-container" style="display: none;" id="city">
     <header>
       <a href="javascript:;" class="btn btn-back" id="to-province"></a>
       <div class="title">选择市</div>
@@ -132,7 +142,7 @@
     <section class="box-address">
       <div class="cur-address"></div>
     </section>
-    <section  class="app-main app-main-address">
+    <section class="app-main app-main-address">
       <div class="loading" id="city-list-loading"><span>加载中...</span></div>
       <section class="box-address-items" id="city-list"></section>
     </section>
@@ -146,7 +156,7 @@
     <section class="box-address">
       <div class="cur-address"></div>
     </section>
-    <section  class="app-main app-main-address">
+    <section class="app-main app-main-address">
       <div class="loading" id="area-list-loading"><span>加载中...</span></div>
       <section class="box-address-items" id="area-list"></section>
     </section>
