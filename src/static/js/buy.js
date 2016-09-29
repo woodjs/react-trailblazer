@@ -90,7 +90,7 @@ $(function () {
 
       self.jq.$order.html('');
       self.jq.$orderLoading.show();
-      util.ajax('../data/order.json?_=' + Math.random(), 'GET', '', function (result) {
+      util.ajax('../data/order.json', 'GET', '', function (result) {
         var productHtml = ejs.render(self.tpl.product, result);
         result.productHtml = productHtml;
         var html = ejs.render(self.tpl.order, result);
