@@ -172,7 +172,7 @@ $(function () {
 
           util.showPrompt((xhr && xhr.response && xhr.response.message) || 'network error!');
           self.resetSubmitBtn(type);
-        })
+        });
       }
     },
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
   <title>交易成功</title>
-  <link type="text/css" rel="stylesheet" href="../../../lib/app.css">
+  <link rel="stylesheet" type="text/css" href="../release/styles/app.min.css" />
 </head>
 <body>
   <section class="app-container">
@@ -32,18 +32,18 @@
     </section>
   </section>
 
-  <script type="text/javascript" src="../js/zepto-1.2.0.min.js"></script>
   <script type="text/javascript">
-    $(function () {
-      $('#to-referer').on('click', function () {
-        console.log('back to referer!');
-        window.location.href = './page1.html';
-      });
-      $('#get-invoice').on('click', function () {
-        console.log('get invoice!');
-        window.location.href = './page3.html';
-      });
-    });
+
+    document.getElementById('to-referer').addEventListener('click', function () {
+      console.log('back to referer!');
+      window.location.href = './page1.html';
+    }, false);
+
+    document.getElementById('get-invoice').addEventListener('click', function () {
+      console.log('get invoice!');
+      window.location.href = './page3.html';
+    }, false);
+
   </script>
 </body>
 </html>
