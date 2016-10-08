@@ -2312,6 +2312,7 @@ $(function () {
       self.initTemplate();
       self.initStore();
       self.render();
+
     },
 
     initElement: function () {
@@ -2367,8 +2368,10 @@ $(function () {
         case 'buy':
           self.renderPageBuy();
           break;
+        case 'pay':
+          productId && self.renderPagePay(productId);
+          break;
         default:
-          self.renderPagePay(productId);
       }
     },
 
@@ -2376,14 +2379,12 @@ $(function () {
       var self = this;
 
       self.store.product[productId] = data;
-
-      console.log(self.store);
     },
 
     getStore: function (type, productId) {
       var self = this;
 
-      return  (productId && self.store.product[productId]) || null;
+      return (productId && self.store.product[productId]) || null;
     },
 
     renderPageBuy: function () {
@@ -2670,7 +2671,7 @@ $(function () {
       var city = self.jq.$normalSelectAddress.data('city');
       var area = self.jq.$normalSelectAddress.data('area');
 
-      self.renderProvince(province);
+      pageConfig && (pageConfig.pageCode === 'invoice') && self.renderProvince(province);
       province && self.renderCity(province, city);
       city && self.renderArea(province, city, area);
 

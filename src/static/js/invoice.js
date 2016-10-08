@@ -144,7 +144,7 @@ $(function () {
       var city = self.jq.$normalSelectAddress.data('city');
       var area = self.jq.$normalSelectAddress.data('area');
 
-      self.renderProvince(province);
+      pageConfig && (pageConfig.pageCode === 'invoice') && self.renderProvince(province);
       province && self.renderCity(province, city);
       city && self.renderArea(province, city, area);
 
