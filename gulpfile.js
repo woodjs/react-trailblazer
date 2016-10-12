@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var sass = require('gulp-ruby-sass');
-var minifycss = require('gulp-minify-css');
+var minifycss = require('gulp-clean-css');
+var base64 = require('gulp-base64');
 var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
@@ -24,6 +25,13 @@ gulp.task('css', function () {
     .pipe(gulp.dest(pathMap.cssDistPath))
     .pipe(rename({suffix: '.min'}))
     .pipe(minifycss())
+    .pipe(base64({
+      baseDir: '',
+      extensions: ['png', 'jpg', 'gif'],
+      maxImageSize: 10 * 1024, // bytes
+      deleteAfterEncoding: false,
+      debug: false
+    }))
     .pipe(gulp.dest(pathMap.cssDistPath))
     .on('end', function () {
       console.log('task css finished!');

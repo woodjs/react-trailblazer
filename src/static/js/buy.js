@@ -159,7 +159,7 @@ $(function () {
 
       self.jq.$order.find('.pay-item').on('click', function () {
         console.log('pay!');
-        window.location.href = './page2.html';
+        window.location.href = './success.html';
       });
     },
 

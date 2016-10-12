@@ -51,7 +51,7 @@ $(function () {
 
       self.jq.$toReferer.on('click', function () {
         console.log('to referer!');
-        window.location.href = './page1.html';
+        window.location.href = './buy-pay.html';
       });
 
       self.jq.$itemInvoiceTypeList.on('click', function (e) {
@@ -167,7 +167,7 @@ $(function () {
         util.ajax('/', 'POST', params, function () {
           alert(i18n.invoice_1);
           self.resetSubmitBtn(type);
-          window.location.href = './page1.html';
+          window.location.href = './buy-pay.html';
         }, function (xhr) {
 
           util.showPrompt((xhr && xhr.response && xhr.response.message) || 'network error!');
