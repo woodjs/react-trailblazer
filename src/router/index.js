@@ -1,12 +1,10 @@
-"use strict";
-
 import React, {Component} from 'react';
 import {Router, Route, Link, IndexRoute, browerHistory, hashHistory} from 'react-router';
-import {Pay} from '../component/Pay';
+import {Products} from '../component/Products';
 
 const router = (
   <Router history={hashHistory}>
-    <Route path="/" component={Pay}></Route>
+    <Route path="/" component={Products}></Route>
   </Router>
 );
 

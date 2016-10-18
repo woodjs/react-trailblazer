@@ -1,10 +1,8 @@
-"use strict";
-
 import * as actionType from '../constant/action_type';
 
-export function create(data) {
+export function showProductList(data) {
   return {
-    type: actionType.CREATE,
+    type: actionType.SHOW_PRODUCT_LIST,
     data
   };
 }
