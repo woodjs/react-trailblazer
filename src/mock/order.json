@@ -1,5 +1,5 @@
-export default {
- "productList": [
+{
+ "data": [
   {
    "title": "啊滴滴答答滴滴答答滴滴答答滴滴答答",
    "originPrice": "￥1000.00",
@@ -16,4 +16,4 @@ export default {
   }],
  "orderNumber": 100000200032000230,
  "actualPrice": "￥8020.00"
-};
+}

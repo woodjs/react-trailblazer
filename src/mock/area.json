@@ -1,4 +1,4 @@
-export default {
+{
  "data": [
   {
    "value": "320902",
@@ -51,4 +51,4 @@ export default {
    "hasChildren": false
   }
  ]
-};
+}

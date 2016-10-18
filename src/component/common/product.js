@@ -13,10 +13,14 @@ export class Product extends Component {
 
             if (item.isHasDiscount) {
               content1 = (<div className="product-discount-info"><label>优惠规则</label><p>{item.discountInfo}</p></div>);
-              content2 = (<div className={item.productClassName ? 'product-buy ' + item.productClassName : "product-buy"}>
-                <div className="price-info-item">优惠：<span>-{item.discountPrice}</span></div>
-                <div className="price-info-item">实付款：<span className="real-price">{item.actualPrice}</span></div>
-                <a className="btn btn-buy tap-area" href="javascript:;" data-href={item.url} data-productid={item.productId} onClick={this.buy}>购买</a>
+            }
+
+            if (item.isHasActualPrice || item.isHasDiscount) {
+              content2 = (
+              <div className={item.productClassName ? 'product-buy ' + item.productClassName : "product-buy"}>
+                {item.isHasDiscount ? <div className="price-info-item">优惠：<span>-{item.discountPrice}</span></div> : ''}
+                {item.isHasActualPrice ? <div className="price-info-item">实付款：<span className="real-price">{item.actualPrice}</span></div> : ''}
+                {item.isHasBuyBtn ? <a className="btn btn-buy tap-area" href="javascript:;" data-href={item.url} data-productid={item.productId} onClick={this.buy}>购买</a> : ''}
               </div>);
             }
 
@@ -36,6 +40,6 @@ export class Product extends Component {
   }
 
   buy() {
-    alert('buy');
+    console.log('buy');
   }
 }
