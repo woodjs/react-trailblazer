@@ -1,18 +1,19 @@
+import {combineReducers} from 'redux';
+
 import {SHOW_PRODUCT_LIST} from '../constant/action_type';
 
-const initialState = {
+const INITIAL_STATE = {};
 
-};
-
-export default function trailblazerReducer(state = initialState, action) {
+function products(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case CREATE:
-        return {
-          data: 'hello trailblazer!'
-        };
+    case SHOW_PRODUCT_LIST:
+      return action.data;
       break;
     default:
-
       return state;
   }
 }
+
+export default combineReducers({
+  products
+});

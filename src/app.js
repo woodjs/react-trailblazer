@@ -9,7 +9,7 @@ import router from './router/index';
 import './static/scss/app.scss';
 
 store.subscribe(function () {
-  console.log(store.getState());
+  // console.log(store.getState());
 });
 
 ReactDom.render(
