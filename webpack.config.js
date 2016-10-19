@@ -3,17 +3,18 @@
 let path = require('path');
 let webpack = require('webpack');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let isProductionEnv = (process.argv.indexOf('-p') > -1) ? true : false;
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
-  entry: [
+  devtool: isProductionEnv ? false : 'cheap-module-eval-source-map',
+  entry: isProductionEnv ? ['./src/app'] : [
     'webpack-hot-middleware/client',
     './src/app'
   ],
   output: {
-    publicPath: '/static/',  // html引用静态资源时的资源路径，幽灵文件夹
+    publicPath: '/lib/',  // html引用静态资源时的资源路径，幽灵文件夹
     path: path.join(__dirname, 'lib'),  // 打包输出的路径
-    filename: 'bundle.js'  // 打包后的文件名
+    filename: 'app.js'  // 打包后的文件名
   },
   module: {
     loaders: [{
@@ -32,14 +33,24 @@ module.exports = {
       loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
     }]
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"development"'  // 双引号必须加
-    }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('app.css')
-  ],
+  plugins: function () {
+    let temp = [];
+
+    if (isProductionEnv) {
+      temp.push(new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify('production')
+        }
+      }));
+    } else {
+      temp.push(new webpack.optimize.OccurrenceOrderPlugin());
+      temp.push(new webpack.HotModuleReplacementPlugin());
+    }
+
+    temp.push(new ExtractTextPlugin('app.css'));
+
+    return temp;
+  }(),
   resolve: {
     extensions: ['', '.js']  // 后缀名自动补全
   }
