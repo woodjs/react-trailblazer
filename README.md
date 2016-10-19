@@ -1,2 +1,2 @@
 # react-trailblazer
-react-trailblazer
+react.js
