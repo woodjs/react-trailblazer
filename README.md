@@ -1,2 +1,2 @@
 # react-trailblazer
-react.js
+react.js vs normal
