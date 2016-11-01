@@ -20,7 +20,9 @@ html {
     background-size:5rem 5rem;
    }
   }
-
+  .no-order-history{
+   background: url(./images/nocart_2x.png) center top no-repeat;
+  }
   header {
    .btn-back {
     background: url(./images/back_2x.png) center center no-repeat;
@@ -533,4 +535,49 @@ header {
  @include opacity(0);
  @include transform(translate(-50%, 0));
  @include transition(all .3s ease-in-out);
+}
+
+.order-history-list{
+ .order-number{
+  line-height: 3.4rem;
+  padding:0 1.5rem;
+  font-size:1.2rem;
+  border-bottom: .1rem solid $lightestBdColor;
+  span{
+   color:$lightestFontColor;
+  }
+ }
+ dl {
+  padding: .6rem 1.5rem .4rem;
+  border-bottom: .1rem solid $lightestBdColor;
+  dt {
+   font-size: 1.4rem;
+   line-height: 2.2rem;
+  }
+  .product-price {
+   font-size: 1.4rem;
+   line-height: 2.2rem;
+   span {
+    font-size: 1.4rem;
+    margin-right: .2rem;
+    color:$priceColor;
+   }
+  }
+  .order-time {
+   font-size: 1.2rem;
+   line-height: 1.6rem;
+   padding: .2rem 0;
+   color: $lightestFontColor;
+  }
+ }
+}
+.no-order-history{
+ margin-top:  5rem;
+ text-align: center;
+ padding-top:14.4rem;
+ background: url(./images/nocart_1x.png) center top no-repeat;
+ background-size: auto 12.5rem;
+ font-size: 1.6rem;
+ line-height: 2.6rem;
+ color:$lightestFontColor;
 }
