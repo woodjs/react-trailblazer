@@ -219,6 +219,16 @@ header .title {
   padding: .3rem 0;
   color: #888;
 }
+.box-product-info .product-warn {
+  border: .2rem #e5d916 solid;
+  color: #5c5703;
+  margin: .6rem 0;
+  font-size: 1.2rem;
+  padding: 0 .5rem 0 2.5rem;
+  line-height: 1.8rem;
+  background: #fdf8ac url(./images/caution_1x.png) 0.5rem 0.3rem no-repeat;
+  background-size: 1.2rem 1.1rem;
+}
 .box-product-info .product-discount-info {
   padding-top: .4rem;
 }
